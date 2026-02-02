@@ -434,7 +434,7 @@ export default function CadenceApp() {
     setInsights(curr => [
       {
         id: `insight-conflict-${Date.now()}`,
-        type: 'conflict-detected' as const,
+        type: 'deadline-risk' as const,
         title: 'Schedule conflict detected.',
         body: 'Impromptu Client Call overlaps with Review Q4 Tax Returns.',
         confidence: 95,
