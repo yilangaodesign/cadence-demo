@@ -339,6 +339,7 @@ export default function CadenceApp() {
       {
         id: `task-${proposalId}`,
         title: proposal.title,
+        client: 'New Client',
         duration: '1h 30m',
         deadlineLabel: 'DDL',
         deadlineDaysUntil: 1,
