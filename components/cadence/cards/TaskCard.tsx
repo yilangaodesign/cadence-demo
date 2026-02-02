@@ -257,7 +257,7 @@ export function QueuedTaskCard({
       </TaskCard.Meta>
       {confidenceTier && (
         <TaskCard.Footer>
-          <ConfidenceBadge tier={confidenceTier} basisText={confidenceBasis} showBasis={!!confidenceBasis} />
+          <ConfidenceBadge tier={confidenceTier} basisText={confidenceBasis} />
         </TaskCard.Footer>
       )}
     </TaskCard.Root>
