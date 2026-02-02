@@ -258,7 +258,7 @@ export default function CadenceApp() {
   
   // Derived state
   const urgentProposal = useMemo(() => proposals.find(p => p.isUrgent), [proposals]);
-  const hasUrgentInsight = useMemo(() => insights.some(i => i.type === 'deadline-risk' || i.type === 'conflict-detected'), [insights]);
+  const hasUrgentInsight = useMemo(() => insights.some(i => i.type === 'deadline-risk' || i.type === 'capacity-overflow'), [insights]);
   
   // Drag handlers for demo controls
   const handleDragStart = useCallback((e: React.MouseEvent) => {
