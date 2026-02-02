@@ -1,0 +1,58 @@
+// ModeToggle - Tab switcher between Tasks and Calendar
+
+.modeToggle {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--cadence-surface-secondary);
+  border-radius: var(--cadence-radius-sm);
+  padding: 2px;
+  margin: var(--cadence-spacing-05) 0;
+}
+
+.toggleButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cadence-spacing-02);
+  height: 32px;
+  padding: 0 var(--cadence-spacing-04);
+  background-color: transparent;
+  border: none;
+  border-radius: calc(var(--cadence-radius-sm) - 2px);
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-secondary);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  svg {
+    color: var(--cadence-text-secondary);
+    transition: color var(--cadence-duration-fast) var(--cadence-easing-standard);
+  }
+
+  &:hover:not(.active) {
+    color: var(--cadence-text-primary);
+    
+    svg {
+      color: var(--cadence-text-primary);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: -2px;
+  }
+
+  &.active {
+    background-color: var(--cadence-surface-inverse);
+    color: var(--cadence-text-inverse);
+    font-weight: 600;
+
+    svg {
+      color: var(--cadence-text-inverse);
+    }
+  }
+}

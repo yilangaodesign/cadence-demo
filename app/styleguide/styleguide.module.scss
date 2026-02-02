@@ -1,0 +1,3302 @@
+@use '@carbon/styles/scss/spacing' as *;
+@use '@carbon/styles/scss/type' as *;
+@use '@carbon/styles/scss/breakpoint' as *;
+@use '@carbon/styles/scss/theme' as *;
+
+.styleguide {
+  min-height: 100vh;
+  background-color: $layer-01;
+}
+
+.container {
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 0 $spacing-05;
+
+  @include breakpoint('md') {
+    padding: 0 $spacing-07;
+  }
+}
+
+// Fixed Header Wrapper
+.stickyHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: $background;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+// Header
+.header {
+  padding: $spacing-05 0 $spacing-04;
+  border-bottom: 1px solid $border-subtle-01;
+}
+
+.title {
+  @include type-style('heading-04');
+  color: $text-primary;
+  margin-bottom: $spacing-02;
+}
+
+.subtitle {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+}
+
+// Navigation
+.nav {
+  background-color: $background;
+  border-bottom: 1px solid $border-subtle-01;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: $spacing-02;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.navButton {
+  @include type-style('body-compact-01');
+  background: transparent;
+  border: none;
+  color: $text-secondary;
+  padding: $spacing-04 $spacing-05;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 150ms ease, background-color 150ms ease;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: $text-primary;
+    background-color: $layer-hover-01;
+  }
+
+  &:focus {
+    outline: 2px solid $focus;
+    outline-offset: -2px;
+  }
+
+  &:active {
+    color: $interactive;
+    border-bottom-color: $interactive;
+  }
+}
+
+// Content
+.content {
+  padding-top: 140px; // Account for fixed header + nav height
+  padding-bottom: $spacing-10;
+}
+
+.tabContent {
+  padding: $spacing-05 0;
+}
+
+// Sections
+.section {
+  margin-bottom: $spacing-09;
+  scroll-margin-top: 160px; // Account for fixed header + nav + some padding
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sectionTitle {
+  @include type-style('heading-04');
+  color: $text-primary;
+  margin-bottom: $spacing-03;
+}
+
+.sectionDescription {
+  @include type-style('body-01');
+  color: $text-secondary;
+  margin-bottom: $spacing-06;
+  max-width: 800px;
+}
+
+// Color Palette
+.colorPalette {
+  margin-bottom: $spacing-07;
+}
+
+.paletteTitle {
+  @include type-style('heading-02');
+  color: $text-primary;
+  margin-bottom: $spacing-05;
+  padding-bottom: $spacing-03;
+  border-bottom: 1px solid $border-subtle-01;
+}
+
+.colorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: $spacing-04;
+}
+
+.colorSwatch {
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+  background: $background;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.colorPreview {
+  height: 80px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: $spacing-03;
+}
+
+.colorValue {
+  @include type-style('code-01');
+  text-transform: uppercase;
+}
+
+.colorInfo {
+  padding: $spacing-03 $spacing-04;
+  background: $background;
+  border-top: 1px solid $border-subtle-01;
+}
+
+.colorName {
+  @include type-style('label-01');
+  color: $text-secondary;
+  display: block;
+  word-break: break-word;
+}
+
+// Typography Samples
+.fontFamilies {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+}
+
+.fontFamilySample {
+  padding: $spacing-05;
+}
+
+.fontPreview {
+  @include type-style('body-02');
+  margin-bottom: $spacing-04;
+  font-size: 1.25rem;
+}
+
+.fontCode {
+  @include type-style('code-01');
+  display: block;
+  color: $text-secondary;
+  background: $layer-01;
+  padding: $spacing-03;
+  border-radius: 4px;
+  word-break: break-all;
+}
+
+// Cadence Brand Typography Enhancements
+.fontRoleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-04;
+}
+
+.fontUsagePercent {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+.fontUsage {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+  margin-bottom: $spacing-04;
+}
+
+// Cadence Brand Color Section
+.brandColorIntro {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-05;
+  margin-bottom: $spacing-07;
+}
+
+.brandColorCard {
+  padding: 0;
+  overflow: hidden;
+}
+
+.brandColorHeader {
+  padding: $spacing-05;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.brandColorBody {
+  padding: $spacing-05;
+}
+
+.brandColorRole {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+  margin-bottom: $spacing-02;
+}
+
+.brandColorUsage {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+  margin: 0;
+}
+
+// Cadence Typography Tokens Section
+.tokenDescription {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+  margin-bottom: $spacing-05;
+}
+
+.cadenceTokenGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-05;
+  margin-bottom: $spacing-07;
+}
+
+.cadenceTokenSample {
+  padding: $spacing-05;
+}
+
+.cadenceTokenPreview {
+  margin-bottom: $spacing-05;
+  padding-bottom: $spacing-05;
+  border-bottom: 1px solid $border-subtle-01;
+  color: $text-primary;
+}
+
+.cadenceTokenInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.cadenceTokenName {
+  @include type-style('code-01');
+  color: $interactive;
+  font-weight: 600;
+}
+
+.cadenceTokenDesc {
+  @include type-style('helper-text-01');
+  color: $text-secondary;
+}
+
+// Type Sets Grid
+.typeSetsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: $spacing-05;
+}
+
+.typeSetCard {
+  padding: $spacing-05;
+}
+
+.typeSetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-04;
+  
+  span {
+    @include type-style('label-01');
+    color: $text-secondary;
+  }
+}
+
+.typeSetBase {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+  margin-bottom: $spacing-02;
+}
+
+.typeSetDesc {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+  margin-bottom: $spacing-04;
+}
+
+.typeSetTokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-02;
+  
+  code {
+    @include type-style('code-01');
+    background: $layer-01;
+    padding: $spacing-02 $spacing-03;
+    border-radius: 4px;
+    color: $text-secondary;
+  }
+}
+
+// =============================================================================
+// CUSTOM COMPONENTS SHOWCASE
+// =============================================================================
+
+.componentShowcase {
+  margin-bottom: $spacing-07;
+  padding: $spacing-05;
+  background: $layer-01;
+  border-radius: 8px;
+}
+
+.componentName {
+  @include type-style('heading-compact-02');
+  color: $text-primary;
+  margin: 0 0 $spacing-02 0;
+}
+
+.componentDesc {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+  margin: 0 0 $spacing-05 0;
+}
+
+.componentDemo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-04;
+  padding: $spacing-05;
+  background: $background;
+  border-radius: 4px;
+  margin-bottom: $spacing-04;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.componentDemoVertical {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-04;
+  padding: $spacing-05;
+  background: $background;
+  border-radius: 4px;
+}
+
+.componentDemoCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-05;
+  padding: $spacing-05;
+  background: $background;
+  border-radius: 4px;
+}
+
+.componentNote {
+  padding: $spacing-05;
+  background: $layer-01;
+  border-left: 3px solid $interactive;
+  border-radius: 0 8px 8px 0;
+  margin-top: $spacing-06;
+
+  h4 {
+    @include type-style('heading-compact-01');
+    color: $text-primary;
+    margin: 0 0 $spacing-03 0;
+  }
+
+  p {
+    @include type-style('body-compact-01');
+    color: $text-secondary;
+    margin: 0 0 $spacing-04 0;
+  }
+
+  strong {
+    color: $text-primary;
+  }
+}
+
+.codeExample {
+  @include type-style('code-01');
+  background: $layer-02;
+  padding: $spacing-04;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 0;
+  white-space: pre-wrap;
+  color: $text-secondary;
+}
+
+.fontWeights {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-04;
+}
+
+.fontWeightSample {
+  padding: $spacing-05;
+  text-align: center;
+}
+
+.fontSizes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: $spacing-04;
+}
+
+.fontSizeSample {
+  padding: $spacing-05;
+  text-align: center;
+}
+
+.fontSizePreview {
+  color: $text-primary;
+  margin-bottom: $spacing-03;
+  line-height: 1.2;
+}
+
+.fontSizeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.fontSizeName {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+.fontSizeValue {
+  @include type-style('code-01');
+  color: $text-primary;
+}
+
+.typographyStyles {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+}
+
+.typographySample {
+  padding: $spacing-05;
+}
+
+.typographyPreview {
+  margin-bottom: $spacing-04;
+  padding-bottom: $spacing-04;
+  border-bottom: 1px solid $border-subtle-01;
+
+  p {
+    color: $text-primary;
+    margin: 0;
+  }
+}
+
+.typographyInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+.typographyName {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+}
+
+.typographyDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-02;
+}
+
+// Spacing Samples
+.spacingScale {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-04;
+}
+
+.spacingSample {
+  display: flex;
+  align-items: center;
+  gap: $spacing-05;
+  padding: $spacing-03;
+  background: $background;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+}
+
+.spacingVisual {
+  width: 320px;
+  min-width: 320px;
+  height: 32px;
+  background: $layer-02;
+  border: 1px solid $border-subtle-01;
+  display: flex;
+  align-items: center;
+}
+
+.spacingBar {
+  background: $interactive;
+  min-width: 2px;
+  min-height: 2px;
+}
+
+.spacingInfo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-04;
+}
+
+.spacingName {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+  min-width: 100px;
+}
+
+.spacingValue {
+  @include type-style('code-01');
+  color: $text-secondary;
+}
+
+.spacingReference {
+  padding: $spacing-05;
+  overflow-x: auto;
+}
+
+.spacingTable {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th, td {
+    @include type-style('body-compact-01');
+    padding: $spacing-04;
+    text-align: left;
+    border-bottom: 1px solid $border-subtle-01;
+  }
+
+  th {
+    @include type-style('heading-compact-01');
+    color: $text-primary;
+    background: $layer-01;
+  }
+
+  td {
+    color: $text-secondary;
+
+    &:first-child {
+      @include type-style('code-01');
+      color: $text-primary;
+    }
+  }
+}
+
+// Shadow Samples
+.shadowGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $spacing-05;
+}
+
+.shadowSample {
+  padding: $spacing-05;
+}
+
+.shadowPreview {
+  width: 100%;
+  height: 80px;
+  background: $background;
+  border-radius: 4px;
+  margin-bottom: $spacing-04;
+}
+
+.shadowInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+.shadowName {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+}
+
+.shadowCode {
+  @include type-style('code-01');
+  color: $text-secondary;
+  word-break: break-all;
+  font-size: 0.75rem;
+}
+
+// Border Radius Samples
+.radiusGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: $spacing-05;
+}
+
+.radiusSample {
+  padding: $spacing-05;
+  text-align: center;
+}
+
+.radiusPreview {
+  width: 80px;
+  height: 80px;
+  background: $interactive;
+  margin: 0 auto $spacing-04;
+}
+
+.radiusInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.radiusName {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+}
+
+.radiusValue {
+  @include type-style('code-01');
+  color: $text-secondary;
+}
+
+// Icon Sizes
+.iconSizes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: $spacing-05;
+}
+
+.iconSizeSample {
+  padding: $spacing-05;
+  text-align: center;
+}
+
+.iconPreview {
+  background: $icon-primary;
+  margin: 0 auto $spacing-04;
+  border-radius: 2px;
+}
+
+.iconInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.iconName {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+}
+
+.iconValue {
+  @include type-style('code-01');
+  color: $text-secondary;
+}
+
+// Z-Index Reference
+.zIndexReference {
+  padding: $spacing-05;
+  overflow-x: auto;
+}
+
+// Breakpoints
+.breakpointVisual {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+}
+
+.breakpointItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+.breakpointBar {
+  height: 24px;
+  background: $layer-02;
+  border: 1px solid $border-subtle-01;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.breakpointFill {
+  height: 100%;
+  background: linear-gradient(90deg, $interactive 0%, $support-info 100%);
+}
+
+.breakpointInfo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-03;
+}
+
+.breakpointValue {
+  @include type-style('code-01');
+  color: $text-primary;
+}
+
+.breakpointPx {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+.breakpointReference {
+  padding: $spacing-05;
+  overflow-x: auto;
+}
+
+.codeExample {
+  padding: $spacing-05;
+}
+
+// Motion
+.durationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-05;
+}
+
+.durationSample {
+  padding: $spacing-05;
+}
+
+.durationVisual {
+  height: 40px;
+  background: $layer-02;
+  border: 1px solid $border-subtle-01;
+  border-radius: 2px;
+  margin-bottom: $spacing-04;
+  overflow: hidden;
+  position: relative;
+}
+
+.durationBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40px;
+  background: $interactive;
+  animation: slide infinite ease-in-out alternate;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100% + 200px));
+  }
+}
+
+.durationInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.durationName {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+}
+
+.durationValue {
+  @include type-style('code-01');
+  color: $text-primary;
+}
+
+.durationUsage {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+.easingReference {
+  padding: $spacing-05;
+
+  h3 {
+    @include type-style('heading-compact-02');
+    color: $text-primary;
+    margin-top: $spacing-05;
+    margin-bottom: $spacing-04;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.easingRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-04;
+  margin-bottom: $spacing-03;
+
+  :global(.cds--snippet) {
+    flex: 1;
+  }
+}
+
+.motionGuidelines {
+  padding: $spacing-05;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-05;
+}
+
+.guidelineItem {
+  h4 {
+    @include type-style('heading-compact-02');
+    color: $text-primary;
+    margin-bottom: $spacing-03;
+  }
+
+  p {
+    @include type-style('body-01');
+    color: $text-secondary;
+    margin: 0;
+  }
+}
+
+// Responsive adjustments
+@include breakpoint('md') {
+  .spacingVisual {
+    width: 400px;
+    min-width: 400px;
+  }
+}
+
+@include breakpoint-down('md') {
+  .header {
+    padding: $spacing-07 0 $spacing-05;
+  }
+
+  .spacingSample {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .spacingVisual {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .breakpointInfo {
+    flex-wrap: wrap;
+  }
+}
+
+// =============================================================================
+// ANIMATION PLAYGROUND STYLES
+// =============================================================================
+
+.animationCategory {
+  margin-bottom: $spacing-09;
+  padding-bottom: $spacing-07;
+  border-bottom: 1px solid $border-subtle-01;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+}
+
+.categoryTitle {
+  @include type-style('heading-03');
+  color: $text-primary;
+  margin-bottom: $spacing-03;
+}
+
+.categoryDescription {
+  @include type-style('body-01');
+  color: $text-secondary;
+  margin-bottom: $spacing-06;
+}
+
+.animationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-05;
+}
+
+.animationGridLarge {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: $spacing-05;
+}
+
+.animationTile {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.animationTileLarge {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.animationDemo {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $layer-01;
+  border-bottom: 1px solid $border-subtle-01;
+  position: relative;
+  overflow: hidden;
+}
+
+.animationDemoLarge {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $layer-01;
+  border-bottom: 1px solid $border-subtle-01;
+  position: relative;
+  overflow: hidden;
+}
+
+.animationInfo {
+  padding: $spacing-04;
+
+  h4 {
+    @include type-style('heading-compact-01');
+    color: $text-primary;
+    margin-bottom: $spacing-02;
+  }
+
+  p {
+    @include type-style('label-01');
+    color: $text-secondary;
+    margin: 0;
+  }
+}
+
+// Text Effects
+.typewriter {
+  @include type-style('heading-03');
+  color: $text-primary;
+  display: flex;
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+  color: $interactive;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.gradientText {
+  @include type-style('heading-03');
+  font-weight: 600;
+  background: linear-gradient(
+    90deg,
+    #0f62fe 0%,
+    #8a3ffc 25%,
+    #0f62fe 50%,
+    #8a3ffc 75%,
+    #0f62fe 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 3s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.waveText {
+  @include type-style('heading-03');
+  font-weight: 600;
+  color: $text-primary;
+  display: flex;
+  gap: 2px;
+
+  span {
+    display: inline-block;
+    animation: wave 1s ease-in-out infinite;
+  }
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.blurReveal {
+  @include type-style('heading-03');
+  color: $text-primary;
+  filter: blur(8px);
+  opacity: 0.3;
+  transition: all 0.5s ease;
+
+  &.revealed {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.glitchText {
+  @include type-style('heading-03');
+  font-weight: 600;
+  color: $support-error;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &::before {
+    color: #0f62fe;
+    animation: glitch 0.3s infinite linear alternate-reverse;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+
+  &::after {
+    color: #8a3ffc;
+    animation: glitch 0.3s infinite linear alternate-reverse;
+    animation-delay: 0.1s;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-02;
+}
+
+.counterNumber {
+  @include type-style('heading-04');
+  color: $interactive;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.counterLabel {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+// Transitions
+.fadeBox {
+  width: 60px;
+  height: 60px;
+  background: $interactive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: $text-inverse;
+  transition: opacity 0.4s ease;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+.slideContainer {
+  width: 100px;
+  height: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slideBox {
+  width: 40px;
+  height: 40px;
+  background: $interactive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: $text-inverse;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: none;
+}
+
+.slideLeft {
+  animation: slideLeft 0.5s ease forwards;
+}
+
+.slideRight {
+  animation: slideRight 0.5s ease forwards;
+}
+
+.slideUp {
+  animation: slideUp 0.5s ease forwards;
+}
+
+.slideDown {
+  animation: slideDown 0.5s ease forwards;
+}
+
+@keyframes slideLeft {
+  from { transform: translate(50px, -50%); }
+  to { transform: translate(-50%, -50%); }
+}
+
+@keyframes slideRight {
+  from { transform: translate(-150%, -50%); }
+  to { transform: translate(-50%, -50%); }
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, 50px); }
+  to { transform: translate(-50%, -50%); }
+}
+
+@keyframes slideDown {
+  from { transform: translate(-50%, -150%); }
+  to { transform: translate(-50%, -50%); }
+}
+
+.scaleBox {
+  width: 50px;
+  height: 50px;
+  background: $interactive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: $text-inverse;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scaleUp {
+  transform: scale(1.3);
+}
+
+.flipCard {
+  width: 100px;
+  height: 80px;
+  perspective: 500px;
+  cursor: pointer;
+}
+
+.flipCardInner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.4, 0.14, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.flipped .flipCardInner {
+  transform: rotateY(180deg);
+}
+
+.flipCardFront,
+.flipCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-02;
+  border-radius: 8px;
+  background: $interactive;
+  color: $text-inverse;
+
+  span {
+    @include type-style('label-01');
+  }
+}
+
+.flipCardBack {
+  transform: rotateY(180deg);
+  background: #8a3ffc;
+}
+
+.morphShape {
+  width: 60px;
+  height: 60px;
+  background: $interactive;
+  border-radius: 8px;
+  transition: all 0.5s cubic-bezier(0.4, 0.14, 0.3, 1);
+}
+
+.morphed {
+  border-radius: 50%;
+  transform: rotate(45deg);
+  background: #8a3ffc;
+}
+
+.staggeredList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.staggeredItem {
+  width: 120px;
+  height: 16px;
+  background: $layer-accent-01;
+  border-radius: 4px;
+  transform: translateX(-20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+
+  &:nth-child(2) { width: 100px; }
+  &:nth-child(3) { width: 80px; }
+  &:nth-child(4) { width: 60px; }
+}
+
+.staggeredVisible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+// Mouse Effects
+.magneticButton {
+  display: flex;
+  align-items: center;
+  gap: $spacing-03;
+  padding: $spacing-03 $spacing-05;
+  background: $interactive;
+  color: $text-inverse;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+
+  span {
+    @include type-style('body-compact-01');
+  }
+}
+
+.tiltCard {
+  width: 120px;
+  height: 80px;
+  background: linear-gradient(135deg, $interactive 0%, #8a3ffc 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-inverse;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+  span {
+    @include type-style('label-01');
+  }
+}
+
+.glowButton {
+  padding: $spacing-04 $spacing-06;
+  background: $interactive;
+  color: $text-inverse;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+
+  span {
+    @include type-style('body-compact-01');
+    position: relative;
+    z-index: 1;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+
+  &:hover::before {
+    width: 200%;
+    height: 200%;
+  }
+}
+
+.rippleButton {
+  position: relative;
+  padding: $spacing-04 $spacing-06;
+  background: $interactive;
+  color: $text-inverse;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  @include type-style('body-compact-01');
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%) scale(0);
+  animation: rippleAnim 0.6s ease-out;
+  pointer-events: none;
+  width: 100px;
+  height: 100px;
+}
+
+@keyframes rippleAnim {
+  to {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+.hoverReveal {
+  width: 140px;
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.hoverRevealContent,
+.hoverRevealOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+
+  span {
+    @include type-style('body-compact-01');
+  }
+}
+
+.hoverRevealContent {
+  background: $interactive;
+  color: $text-inverse;
+}
+
+.hoverRevealOverlay {
+  background: $layer-02;
+  color: $text-primary;
+  transform: translateY(100%);
+}
+
+.hoverReveal:hover {
+  .hoverRevealContent {
+    transform: translateY(-100%);
+  }
+
+  .hoverRevealOverlay {
+    transform: translateY(0);
+  }
+}
+
+.cursorTrailContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: $layer-02;
+  cursor: crosshair;
+}
+
+.cursorTrailText {
+  @include type-style('label-01');
+  color: $text-secondary;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.trail {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: $interactive;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+// Background Effects
+.bgText {
+  @include type-style('heading-03');
+  color: $text-inverse;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.gradientBg {
+  background: linear-gradient(
+    -45deg,
+    #0f62fe,
+    #8a3ffc,
+    #0072c3,
+    #6929c4
+  );
+  background-size: 400% 400%;
+  animation: gradientBgAnim 8s ease infinite;
+}
+
+@keyframes gradientBgAnim {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.particlesContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: linear-gradient(135deg, #161616 0%, #262626 100%);
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  background: $interactive;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.waveBg {
+  background: linear-gradient(180deg, #0f62fe 0%, #002d9c 100%);
+  overflow: hidden;
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 100% 100% 0 0;
+  animation: waveAnim 3s ease-in-out infinite;
+
+  &:nth-child(2) {
+    height: 80px;
+    animation-delay: 0.5s;
+    opacity: 0.5;
+  }
+
+  &:nth-child(3) {
+    height: 60px;
+    animation-delay: 1s;
+    opacity: 0.3;
+  }
+}
+
+@keyframes waveAnim {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-25%); }
+}
+
+.gridBg {
+  background: #161616;
+  background-image: 
+    linear-gradient(rgba(15, 98, 254, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 98, 254, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: gridPulse 2s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% { background-size: 20px 20px; }
+  50% { background-size: 25px 25px; }
+}
+
+// Loading States
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid $border-subtle-01;
+  border-top-color: $interactive;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.dotsLoading {
+  display: flex;
+  gap: $spacing-02;
+
+  span {
+    width: 10px;
+    height: 10px;
+    background: $interactive;
+    border-radius: 50%;
+    animation: bounce 1.4s ease-in-out infinite both;
+
+    &:nth-child(1) { animation-delay: -0.32s; }
+    &:nth-child(2) { animation-delay: -0.16s; }
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+.progressContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-03;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: $layer-accent-01;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: $interactive;
+  transition: width 0.05s linear;
+}
+
+.progressText {
+  @include type-style('label-01');
+  color: $text-secondary;
+  font-variant-numeric: tabular-nums;
+}
+
+.skeleton {
+  display: flex;
+  gap: $spacing-04;
+  width: 80%;
+}
+
+.skeletonAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, $layer-accent-01 25%, $layer-02 50%, $layer-accent-01 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeletonLines {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.skeletonLine {
+  height: 12px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, $layer-accent-01 25%, $layer-02 50%, $layer-accent-01 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+
+  &.short {
+    width: 60%;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.pulseContainer {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: $interactive;
+  opacity: 0.3;
+  animation: pulseRing 1.5s ease-out infinite;
+}
+
+.pulseCore {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: $interactive;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.5); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.circularProgress {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circularBg {
+  stroke: $layer-accent-01;
+}
+
+.circularFill {
+  stroke: $interactive;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.03s linear;
+}
+
+.circularText {
+  position: absolute;
+  @include type-style('label-01');
+  color: $text-primary;
+  font-variant-numeric: tabular-nums;
+}
+
+// Calendar Interactions
+.calendarDemo {
+  width: 100%;
+  padding: $spacing-03;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.timeSlot {
+  display: flex;
+  align-items: center;
+  gap: $spacing-03;
+  padding: $spacing-02 $spacing-03;
+  background: $background;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+  min-height: 40px;
+  transition: background-color 0.15s ease;
+
+  &.dragOver {
+    background: rgba(15, 98, 254, 0.1);
+    border-color: $interactive;
+  }
+}
+
+.timeLabel {
+  @include type-style('label-01');
+  color: $text-secondary;
+  width: 60px;
+  flex-shrink: 0;
+}
+
+.calendarEvent {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  padding: $spacing-02 $spacing-03;
+  border-radius: 4px;
+  color: $text-inverse;
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  @include type-style('label-01');
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+}
+
+.resizableDemo {
+  width: 100%;
+  padding: $spacing-03;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-03;
+}
+
+.resizableEvent {
+  width: 80%;
+  background: $interactive;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: height 0.05s linear;
+}
+
+.eventContent {
+  flex: 1;
+  padding: $spacing-03;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-01;
+}
+
+.eventTitle {
+  @include type-style('body-compact-01');
+  color: $text-inverse;
+}
+
+.eventTime {
+  @include type-style('label-01');
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.resizeHandle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  cursor: ns-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resizeBar {
+  width: 40px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+}
+
+.demoHint {
+  @include type-style('helper-text-01');
+  color: $text-secondary;
+  text-align: center;
+}
+
+.monthTransition {
+  display: flex;
+  align-items: center;
+  gap: $spacing-04;
+}
+
+.monthNavBtn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid $border-subtle-01;
+  border-radius: 50%;
+  cursor: pointer;
+  color: $text-primary;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: $layer-hover-01;
+    border-color: $interactive;
+    color: $interactive;
+  }
+}
+
+.monthContainer {
+  width: 160px;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.monthName {
+  @include type-style('heading-03');
+  color: $text-primary;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 40px;
+}
+
+.slideLeftEnter {
+  animation: slideLeftEnter 0.3s ease forwards;
+}
+
+.slideRightEnter {
+  animation: slideRightEnter 0.3s ease forwards;
+}
+
+@keyframes slideLeftEnter {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideRightEnter {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.timeSlotSelection {
+  width: 100%;
+  padding: $spacing-03;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-03;
+}
+
+.slotsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-02;
+  width: 100%;
+}
+
+.selectableSlot {
+  padding: $spacing-03;
+  background: $background;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+  @include type-style('label-01');
+  color: $text-secondary;
+
+  &:hover {
+    background: $layer-hover-01;
+    border-color: $interactive;
+  }
+
+  &.selected {
+    background: $interactive;
+    border-color: $interactive;
+    color: $text-inverse;
+  }
+}
+
+.selectedRange {
+  @include type-style('body-compact-01');
+  color: $text-primary;
+}
+
+// Micro-interactions
+.toggleDemo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-03;
+
+  span {
+    @include type-style('label-01');
+    color: $text-secondary;
+  }
+}
+
+.animatedToggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.toggleTrack {
+  width: 48px;
+  height: 28px;
+  background: $layer-accent-01;
+  border-radius: 14px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.toggleOn .toggleTrack {
+  background: $support-success;
+}
+
+.toggleThumb {
+  width: 24px;
+  height: 24px;
+  background: $background;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-secondary;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggleOn .toggleThumb {
+  transform: translateX(20px);
+  color: $support-success;
+}
+
+.checkboxDemo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-03;
+
+  span {
+    @include type-style('body-compact-01');
+    color: $text-primary;
+  }
+}
+
+.animatedCheckbox {
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: 2px solid $border-strong-01;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &.checked {
+    background: $interactive;
+    border-color: $interactive;
+  }
+}
+
+.checkmark {
+  width: 16px;
+  height: 16px;
+  color: $text-inverse;
+}
+
+.checkmarkPath {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.checked .checkmarkPath {
+  stroke-dashoffset: 0;
+}
+
+.likeButton {
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: $spacing-03;
+}
+
+.heart {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s ease;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  &.liked {
+    animation: heartPop 0.3s ease;
+  }
+}
+
+@keyframes heartPop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.heartParticle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #fa4d56;
+  border-radius: 50%;
+  animation: particleBurst 0.6s ease-out forwards;
+}
+
+@keyframes particleBurst {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-30px);
+    opacity: 0;
+  }
+}
+
+.notificationBadgeDemo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-04;
+}
+
+.notificationIcon {
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: $spacing-02;
+  color: $text-primary;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 $spacing-02;
+  background: $support-error;
+  color: $text-inverse;
+  border-radius: 9px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: badgePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+.clearBtn {
+  @include type-style('label-01');
+  background: transparent;
+  border: 1px solid $border-subtle-01;
+  padding: $spacing-02 $spacing-03;
+  border-radius: 4px;
+  cursor: pointer;
+  color: $text-secondary;
+
+  &:hover {
+    background: $layer-hover-01;
+  }
+}
+
+.formStateDemo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+  width: 80%;
+}
+
+.formInput {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  padding: $spacing-02 $spacing-03;
+  border: 2px solid $border-subtle-01;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    @include type-style('body-compact-01');
+    color: $text-primary;
+    outline: none;
+  }
+
+  &.success {
+    border-color: $support-success;
+    background: rgba(36, 161, 72, 0.1);
+  }
+
+  &.error {
+    border-color: $support-error;
+    background: rgba(218, 30, 40, 0.1);
+    animation: inputShake 0.3s ease;
+  }
+}
+
+@keyframes inputShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.stateIcon {
+  flex-shrink: 0;
+}
+
+.success .stateIcon {
+  color: $support-success;
+}
+
+.error .stateIcon {
+  color: $support-error;
+}
+
+.formActions {
+  display: flex;
+  gap: $spacing-02;
+
+  button {
+    flex: 1;
+    padding: $spacing-02;
+    border: 1px solid $border-subtle-01;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    @include type-style('label-01');
+    color: $text-secondary;
+
+    &:hover {
+      background: $layer-hover-01;
+    }
+  }
+}
+
+.accordionDemo {
+  width: 90%;
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-03 $spacing-04;
+  background: $background;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+  cursor: pointer;
+  @include type-style('body-compact-01');
+  color: $text-primary;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background: $layer-hover-01;
+  }
+}
+
+.accordionIcon {
+  transition: transform 0.3s ease;
+
+  &.expanded {
+    transform: rotate(90deg);
+  }
+}
+
+.accordionContent {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+
+  &.expanded {
+    max-height: 100px;
+  }
+}
+
+.accordionInner {
+  padding: $spacing-03 $spacing-04;
+  background: $layer-01;
+  border: 1px solid $border-subtle-01;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+
+  p {
+    @include type-style('label-01');
+    color: $text-secondary;
+    margin: 0 0 $spacing-02;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Toast & Notifications
+.toastDemo {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.toastTrigger {
+  padding: $spacing-03 $spacing-04;
+  background: $interactive;
+  color: $text-inverse;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  @include type-style('body-compact-01');
+
+  &:hover {
+    background: #0043ce;
+  }
+}
+
+.toastContainer {
+  position: absolute;
+  bottom: $spacing-03;
+  right: $spacing-03;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  padding: $spacing-03 $spacing-04;
+  background: $support-success;
+  color: $text-inverse;
+  border-radius: 4px;
+  @include type-style('label-01');
+  animation: toastSlide 0.3s ease forwards;
+}
+
+@keyframes toastSlide {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.shakeDemo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-04;
+
+  button {
+    padding: $spacing-02 $spacing-04;
+    background: transparent;
+    border: 1px solid $border-subtle-01;
+    border-radius: 4px;
+    cursor: pointer;
+    @include type-style('label-01');
+    color: $text-secondary;
+
+    &:hover {
+      background: $layer-hover-01;
+    }
+  }
+}
+
+.shakeBox {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  padding: $spacing-03 $spacing-04;
+  background: rgba(218, 30, 40, 0.1);
+  border: 1px solid $support-error;
+  border-radius: 4px;
+  color: $support-error;
+  @include type-style('label-01');
+}
+
+.shaking {
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.confettiDemo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.celebrateBtn {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  padding: $spacing-03 $spacing-04;
+  background: $support-success;
+  color: $text-inverse;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  @include type-style('body-compact-01');
+
+  &:hover {
+    background: #198038;
+  }
+}
+
+.confettiPiece {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  animation: confettiFall 2s ease-out forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.bounceDemo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    padding: $spacing-03 $spacing-04;
+    background: $interactive;
+    color: $text-inverse;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    @include type-style('body-compact-01');
+
+    &:hover {
+      background: #0043ce;
+    }
+  }
+}
+
+.bounceAlert {
+  position: absolute;
+  top: $spacing-03;
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  padding: $spacing-03 $spacing-04;
+  background: $interactive;
+  color: $text-inverse;
+  border-radius: 4px;
+  @include type-style('label-01');
+  animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: translateY(-100%) scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(10%) scale(1.05);
+  }
+  70% {
+    transform: translateY(-5%);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+// Data Visualization
+.barChart {
+  width: 100%;
+  padding: $spacing-04;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 120px;
+}
+
+.barColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-02;
+  height: 100%;
+}
+
+.bar {
+  width: 32px;
+  background: $interactive;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.8s cubic-bezier(0.4, 0.14, 0.3, 1);
+  margin-top: auto;
+}
+
+.barLabel {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+.resetBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-02;
+  padding: $spacing-02 $spacing-03;
+  background: transparent;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+  cursor: pointer;
+  @include type-style('label-01');
+  color: $text-secondary;
+  align-self: center;
+
+  &:hover {
+    background: $layer-hover-01;
+  }
+}
+
+.donutChart {
+  width: 100%;
+  padding: $spacing-04;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-03;
+  position: relative;
+
+  svg {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.donutCenter {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.donutValue {
+  @include type-style('heading-compact-02');
+  color: $text-primary;
+}
+
+.donutLabel {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+.timeline {
+  width: 100%;
+  padding: $spacing-04;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+.timelineLine {
+  position: absolute;
+  left: $spacing-04;
+  top: $spacing-04;
+  bottom: $spacing-09;
+  width: 2px;
+  background: $border-subtle-01;
+}
+
+.timelineItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-03;
+  padding-left: $spacing-03;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.5s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.timelineDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timelineContent {
+  display: flex;
+  gap: $spacing-02;
+  padding: $spacing-02 $spacing-03;
+  background: $layer-01;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.timelineTime {
+  @include type-style('label-01');
+  color: $text-secondary;
+  width: 40px;
+}
+
+.timelineTitle {
+  @include type-style('body-compact-01');
+  color: $text-primary;
+}
+
+.statsDemo {
+  width: 100%;
+  padding: $spacing-04;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-03;
+  position: relative;
+
+  .resetBtn {
+    grid-column: 1 / -1;
+  }
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-03;
+  background: $layer-01;
+  border-radius: 8px;
+}
+
+.statValue {
+  @include type-style('heading-03');
+  color: $interactive;
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  @include type-style('label-01');
+  color: $text-secondary;
+  text-align: center;
+}
+
+// Scroll Reveal
+.scrollAnimationContainer {
+  background: $layer-01;
+  border-radius: 8px;
+  padding: $spacing-05;
+  margin-top: $spacing-05;
+}
+
+.scrollReveal {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+}
+
+.scrollHint {
+  @include type-style('body-01');
+  color: $text-secondary;
+  text-align: center;
+}
+
+.scrollItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: $spacing-05;
+}
+
+.scrollItem {
+  opacity: 0;
+  transition: all 0.6s ease;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.fadeUp {
+  transform: translateY(40px);
+
+  &.visible {
+    transform: translateY(0);
+  }
+}
+
+.fadeLeft {
+  transform: translateX(40px);
+
+  &.visible {
+    transform: translateX(0);
+  }
+}
+
+.fadeRight {
+  transform: translateX(-40px);
+
+  &.visible {
+    transform: translateX(0);
+  }
+}
+
+.scaleIn {
+  transform: scale(0.8);
+
+  &.visible {
+    transform: scale(1);
+  }
+}
+
+.scrollCard {
+  padding: $spacing-05;
+  background: $background;
+  border: 1px solid $border-subtle-01;
+  border-radius: 8px;
+
+  h4 {
+    @include type-style('heading-compact-01');
+    color: $text-primary;
+    margin-bottom: $spacing-02;
+  }
+
+  p {
+    @include type-style('body-01');
+    color: $text-secondary;
+    margin: 0;
+  }
+}
+
+// =============================================================================
+// CADENCE CALENDAR BLOCK SYSTEM STYLES
+// =============================================================================
+
+.cadenceCategory {
+  margin-bottom: $spacing-09;
+  padding-bottom: $spacing-07;
+  border-bottom: 1px solid $border-subtle-01;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+}
+
+.cadenceTile {
+  padding: $spacing-05;
+}
+
+// CadenceBlock Component
+.cadenceBlock {
+  display: flex;
+  position: relative;
+  min-height: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(var(--cadence-fill-color-rgb, 15, 98, 254), var(--cadence-fill-alpha, 0.2));
+  border: var(--cadence-border-width, 1px) var(--cadence-border-style, solid) 
+          rgba(var(--cadence-border-color-rgb, 15, 98, 254), var(--cadence-border-alpha, 0.3));
+  transition: all 0.15s ease;
+
+  // Dynamic background using identity hue
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--cadence-fill-color, #0f62fe);
+    opacity: var(--cadence-fill-alpha, 0.2);
+    pointer-events: none;
+  }
+}
+
+.cadenceBlockCompact {
+  min-height: 40px;
+  
+  .cadenceBlockContent {
+    padding: $spacing-02 $spacing-03;
+  }
+  
+  .cadenceBlockTitle {
+    @include type-style('label-01');
+  }
+  
+  .cadenceBlockMeta {
+    display: none;
+  }
+}
+
+.cadenceBlockMultiDay {
+  min-height: 48px;
+  
+  .cadenceBlockContent {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+// Identity Rail (Left)
+.cadenceIdentityRail {
+  width: 4px;
+  min-width: 4px;
+  background: var(--cadence-identity-hue, #0f62fe);
+  opacity: var(--cadence-rail-opacity, 1);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+// Risk Rail (Right)
+.cadenceRiskRail {
+  width: 4px;
+  min-width: 4px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.cadenceRiskWatch {
+  background: #ff832b; // Warning orange
+}
+
+.cadenceRiskBreach {
+  background: #da1e28; // Error red
+}
+
+// Block Content
+.cadenceBlockContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-01;
+  padding: $spacing-03 $spacing-04;
+  position: relative;
+  z-index: 1;
+  min-width: 0; // Allow text truncation
+}
+
+.cadenceBlockHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-02;
+}
+
+.cadenceBlockTitle {
+  @include type-style('body-compact-01');
+  color: $text-primary;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cadenceBlockGlyphs {
+  display: flex;
+  gap: $spacing-02;
+  flex-shrink: 0;
+}
+
+.cadenceBlockMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-03;
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+.cadenceBlockTime {
+  white-space: nowrap;
+}
+
+.cadenceBlockClient {
+  white-space: nowrap;
+  
+  &::before {
+    content: '•';
+    margin-right: $spacing-02;
+    opacity: 0.5;
+  }
+}
+
+.cadenceBlockBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-02;
+  margin-top: $spacing-01;
+}
+
+// Badge Component
+.cadenceBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 $spacing-02;
+  height: 18px;
+  border-radius: 9px;
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+// Glyph Component
+.cadenceGlyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: $text-secondary;
+}
+
+.cadenceSpinner {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid $border-subtle-01;
+  border-top-color: $interactive;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// Commitment States Grid
+.cadenceStatesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: $spacing-05;
+}
+
+.cadenceStateItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+.cadenceStateLabel {
+  @include type-style('label-01');
+  color: $text-secondary;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// Risk States Grid
+.cadenceRiskGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-05;
+}
+
+.cadenceRiskItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+// Defense States Grid
+.cadenceDefenseGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-05;
+  
+  @include breakpoint-down('md') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cadenceDefenseItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+// Persistence States Grid
+.cadencePersistenceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: $spacing-05;
+}
+
+.cadencePersistenceItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+// Provenance Grid
+.cadenceProvenanceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: $spacing-04;
+}
+
+.cadenceProvenanceItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+// Variants Grid
+.cadenceVariantsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-06;
+  
+  h4 {
+    @include type-style('heading-compact-01');
+    color: $text-primary;
+    margin-bottom: $spacing-03;
+  }
+}
+
+.cadenceVariantItem {
+  display: flex;
+  flex-direction: column;
+}
+
+// Combined States Grid
+.cadenceCombinedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-05;
+}
+
+.cadenceCombinedItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-03;
+}
+
+.cadenceCombinedDesc {
+  @include type-style('helper-text-01');
+  color: $text-secondary;
+  margin: 0;
+}
+
+// Day View Demo
+.cadenceDayView {
+  width: 100%;
+}
+
+.cadenceDayHeader {
+  margin-bottom: $spacing-04;
+  padding-bottom: $spacing-03;
+  border-bottom: 1px solid $border-subtle-01;
+  
+  h4 {
+    @include type-style('heading-compact-02');
+    color: $text-primary;
+    margin: 0;
+  }
+}
+
+.cadenceDayGrid {
+  display: flex;
+  flex-direction: column;
+}
+
+.cadenceDaySlot {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-04;
+  padding: $spacing-02 0;
+  border-bottom: 1px solid $border-subtle-01;
+  min-height: 48px;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.cadenceDayTime {
+  @include type-style('label-01');
+  color: $text-secondary;
+  width: 70px;
+  flex-shrink: 0;
+  padding-top: $spacing-02;
+}
+
+.cadenceDayContent {
+  flex: 1;
+  min-width: 0;
+}
+
+// Anatomy Demo
+.cadenceAnatomyDemo {
+  display: flex;
+  justify-content: center;
+  padding: $spacing-10 $spacing-13;
+}
+
+.cadenceAnatomyBlock {
+  position: relative;
+  width: 320px;
+}
+
+.cadenceAnatomyLabel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  @include type-style('label-01');
+  color: $text-secondary;
+  white-space: nowrap;
+  transform: translateY(-50%);
+  
+  &[style*="top: -40px"],
+  &[style*="bottom: -60px"] {
+    transform: translateX(-50%);
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.cadenceAnatomyLine {
+  position: absolute;
+  background: $border-subtle-01;
+  
+  &[style*="width"] {
+    height: 1px;
+  }
+  
+  &[style*="height"] {
+    width: 1px;
+  }
+}
+
+// Cheat Sheet
+.cadenceCheatSheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-05;
+}
+
+.cadenceCheatItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-04;
+  padding: $spacing-03;
+  background: $layer-01;
+  border-radius: 4px;
+}
+
+.cadenceCheatVisual {
+  width: 48px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cadenceCheatBorder {
+  width: 40px;
+  height: 24px;
+  border: 2px solid $interactive;
+  border-radius: 4px;
+  background: rgba(15, 98, 254, 0.1);
+}
+
+.cadenceCheatRail {
+  width: 6px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+.cadenceCheatInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-01;
+  
+  strong {
+    @include type-style('body-compact-01');
+    color: $text-primary;
+  }
+  
+  span {
+    @include type-style('helper-text-01');
+    color: $text-secondary;
+  }
+}
+
+// Token Table
+.cadenceTokenTable {
+  overflow-x: auto;
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    th, td {
+      @include type-style('body-compact-01');
+      padding: $spacing-03 $spacing-04;
+      text-align: left;
+      border-bottom: 1px solid $border-subtle-01;
+    }
+    
+    th {
+      @include type-style('heading-compact-01');
+      color: $text-primary;
+      background: $layer-01;
+    }
+    
+    td {
+      color: $text-secondary;
+      
+      code {
+        @include type-style('code-01');
+        color: $text-primary;
+        background: $layer-01;
+        padding: 2px 6px;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+// Priority Table
+.cadencePriorityTable {
+  overflow-x: auto;
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    th, td {
+      @include type-style('body-compact-01');
+      padding: $spacing-03 $spacing-04;
+      text-align: left;
+      border-bottom: 1px solid $border-subtle-01;
+    }
+    
+    th {
+      @include type-style('heading-compact-01');
+      color: $text-primary;
+      background: $layer-01;
+    }
+    
+    td {
+      color: $text-secondary;
+      
+      code {
+        @include type-style('code-01');
+        color: $interactive;
+        background: rgba(15, 98, 254, 0.1);
+        padding: 2px 6px;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+.cadencePriorityNum {
+  @include type-style('heading-compact-02');
+  color: $interactive !important;
+  width: 60px;
+}
+
+// Code Block
+.cadenceCodeBlock {
+  @include type-style('code-01');
+  background: #161616;
+  color: #f4f4f4;
+  padding: $spacing-05;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 0;
+  line-height: 1.6;
+}

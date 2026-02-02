@@ -1,0 +1,72 @@
+// BrowserControls - Navigation bar for embedded content
+
+.browserControls {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  height: 36px;
+  padding: 0 var(--cadence-spacing-03);
+  background-color: var(--cadence-surface-primary);
+  border-bottom: 1px solid var(--cadence-border-subtle);
+}
+
+.navButtons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.navButton {
+  min-width: 28px;
+  padding: 0;
+
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+
+.spinning {
+  svg {
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.urlBar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 var(--cadence-spacing-03);
+  background-color: var(--cadence-surface-secondary);
+  border-radius: var(--cadence-radius-full);
+  overflow: hidden;
+}
+
+.urlText {
+  font-family: var(--cadence-font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--cadence-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bookmarkButton {
+  min-width: 28px;
+  padding: 0;
+
+  &.bookmarked {
+    color: #F1C21B; // Yellow-30
+  }
+}

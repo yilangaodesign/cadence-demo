@@ -1,0 +1,120 @@
+// CalendarEventBlock - Calendar meeting on timeline
+
+.calendarEventBlock {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cadence-spacing-01);
+  padding: var(--cadence-spacing-03);
+  background-color: var(--cadence-terra-10);
+  border-left: 3px solid var(--cadence-terra-50);
+  border-top: 1px solid var(--cadence-terra-30);
+  border-right: 1px solid var(--cadence-terra-30);
+  border-bottom: 1px solid var(--cadence-terra-30);
+  border-top-right-radius: var(--cadence-radius-sm);
+  border-bottom-right-radius: var(--cadence-radius-sm);
+  cursor: default;
+  z-index: 2;
+  overflow: hidden;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+}
+
+.eventName {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  color: var(--cadence-terra-60);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eventLocation {
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--cadence-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// State variants
+.default {
+  // Base styling above
+}
+
+.hover {
+  background-color: var(--cadence-terra-20);
+}
+
+.current {
+  border-left-width: 3px;
+  border-left-color: var(--cadence-terra-50);
+  animation: currentPulse 2s ease-in-out infinite;
+
+  .eventName {
+    font-weight: 600;
+  }
+}
+
+@keyframes currentPulse {
+  0%, 100% {
+    border-left-color: var(--cadence-terra-50);
+  }
+  50% {
+    border-left-color: var(--cadence-terra-40);
+  }
+}
+
+.conflict {
+  border-left-color: var(--cadence-support-error);
+  border-top-color: rgba(218, 30, 40, 0.3);
+  border-right-color: rgba(218, 30, 40, 0.3);
+  border-bottom-color: rgba(218, 30, 40, 0.3);
+
+  &::after {
+    content: 'CONFLICT';
+    position: absolute;
+    top: var(--cadence-spacing-02);
+    right: var(--cadence-spacing-02);
+    font-family: var(--cadence-font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--cadence-support-error);
+    background-color: var(--cadence-support-error-bg);
+    padding: 2px 4px;
+    border-radius: 2px;
+  }
+}
+
+.past {
+  opacity: 0.5;
+  border-left-color: var(--cadence-terra-30);
+
+  .eventName {
+    text-decoration: line-through;
+    color: var(--cadence-text-secondary);
+  }
+}
+
+.new-sync {
+  border-color: var(--cadence-lumen-60);
+  border-width: 2px;
+  animation: newSyncGlow 300ms ease-out;
+}
+
+@keyframes newSyncGlow {
+  0% {
+    box-shadow: 0 0 0 4px rgba(51, 54, 255, 0.3);
+  }
+  100% {
+    box-shadow: none;
+  }
+}

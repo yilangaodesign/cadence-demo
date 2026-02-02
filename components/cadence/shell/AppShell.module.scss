@@ -1,0 +1,94 @@
+// AppShell - Three-column layout container
+
+.appShell {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--cadence-surface-primary);
+  overflow: hidden;
+}
+
+.topChrome {
+  flex-shrink: 0;
+  height: 48px;
+  width: 100%;
+  background-color: var(--cadence-surface-primary);
+  // Border is on the TopChrome component itself
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 320px 1px 1fr 1px 340px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.leftPanel {
+  width: 320px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--cadence-surface-primary);
+}
+
+.centerPanel {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--cadence-surface-primary);
+}
+
+.rightPanel {
+  width: 340px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--cadence-surface-primary);
+}
+
+.panelDivider {
+  width: 1px;
+  height: 100%;
+  background-color: var(--cadence-border-subtle);
+  flex-shrink: 0;
+}
+
+// State variants
+.default {
+  // Default three-column layout
+}
+
+.left-collapsed {
+  .mainContent {
+    grid-template-columns: 48px 1px 1fr 1px 340px;
+  }
+
+  .leftPanel {
+    width: 48px;
+  }
+}
+
+.right-collapsed {
+  .mainContent {
+    grid-template-columns: 320px 1px 1fr 1px 48px;
+  }
+
+  .rightPanel {
+    width: 48px;
+  }
+}
+
+.focus-mode {
+  .mainContent {
+    grid-template-columns: 1fr;
+  }
+
+  .leftPanel,
+  .rightPanel,
+  .panelDivider {
+    display: none;
+  }
+}

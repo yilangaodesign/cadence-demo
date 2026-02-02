@@ -1,0 +1,27 @@
+// Using CSS custom properties defined in cadence-tokens.scss
+
+.monoValue {
+  font-family: var(--cadence-font-mono);
+  font-weight: 400;
+}
+
+// Default: 13px, primary text
+.default {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--cadence-text-primary);
+}
+
+// Large: 20px, primary text (gauge values)
+.large {
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--cadence-text-primary);
+}
+
+// Penalty: 16px, ALWAYS RED
+.penalty {
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--cadence-text-error);
+}

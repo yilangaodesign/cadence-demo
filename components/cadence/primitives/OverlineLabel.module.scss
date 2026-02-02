@@ -1,0 +1,24 @@
+// Using CSS custom properties defined in cadence-tokens.scss
+
+.overlineLabel {
+  font-family: var(--cadence-font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.default {
+  color: var(--cadence-text-secondary);
+}
+
+.emphasis {
+  color: var(--cadence-text-primary);
+  font-weight: 600;
+}
+
+.emphasisError {
+  color: var(--cadence-text-error);
+  font-weight: 600;
+}

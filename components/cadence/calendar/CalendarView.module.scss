@@ -1,0 +1,372 @@
+// CalendarView - Day/Week timeline view with blocks
+
+.calendarView {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--cadence-surface-primary);
+  overflow: hidden;
+}
+
+// =============================================================================
+// HEADER CONTROLS
+// =============================================================================
+
+.calendarHeader {
+  flex-shrink: 0;
+  padding: var(--cadence-spacing-03) var(--cadence-spacing-04);
+  border-bottom: 1px solid var(--cadence-border-subtle);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-03);
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-sm);
+  cursor: pointer;
+  color: var(--cadence-text-primary);
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+    border-color: var(--cadence-border-strong);
+  }
+}
+
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: var(--cadence-radius-sm);
+  cursor: pointer;
+  color: var(--cadence-text-secondary);
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+    color: var(--cadence-text-primary);
+  }
+}
+
+.monthYear {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cadence-text-primary);
+}
+
+.viewDropdown {
+  position: relative;
+  margin-left: auto;
+}
+
+.dropdownButton {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-sm);
+  cursor: pointer;
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cadence-text-primary);
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+  }
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  min-width: 100px;
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-md);
+  box-shadow: var(--cadence-shadow-md);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  color: var(--cadence-text-primary);
+  text-align: left;
+  transition: background-color var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+  }
+
+  &.active {
+    font-weight: 600;
+  }
+
+  svg {
+    color: var(--cadence-text-primary);
+  }
+}
+
+.timezoneRow {
+  margin-top: var(--cadence-spacing-02);
+}
+
+.timezoneButton {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-01);
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  border-radius: var(--cadence-radius-sm);
+  cursor: pointer;
+  font-family: var(--cadence-font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cadence-text-secondary);
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+    color: var(--cadence-text-primary);
+  }
+}
+
+// =============================================================================
+// DATE STRIP
+// =============================================================================
+
+.dateStrip {
+  display: flex;
+  justify-content: space-around;
+  padding: var(--cadence-spacing-03) var(--cadence-spacing-02);
+  border-bottom: 1px solid var(--cadence-border-subtle);
+  background-color: var(--cadence-surface-primary);
+  flex-shrink: 0;
+}
+
+.dateItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--cadence-spacing-02);
+  background: transparent;
+  border: none;
+  border-radius: var(--cadence-radius-md);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+  min-width: 36px;
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+  }
+
+  &.today {
+    .dateNumber {
+      background-color: var(--cadence-text-primary);
+      color: var(--cadence-text-inverse);
+    }
+  }
+
+  &.selected {
+    background-color: var(--cadence-lumen-10);
+    
+    .dayLabel {
+      color: var(--cadence-lumen-60);
+    }
+  }
+}
+
+.dayLabel {
+  font-family: var(--cadence-font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--cadence-text-secondary);
+  text-transform: uppercase;
+}
+
+.dateNumber {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cadence-text-primary);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+// =============================================================================
+// TIMELINE
+// =============================================================================
+
+.timelineContainer {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 56px; // Space for hour labels
+  padding-right: var(--cadence-spacing-03);
+  min-height: 100%;
+}
+
+.hourRow {
+  position: relative;
+  border-bottom: 1px solid var(--cadence-border-subtle);
+}
+
+.hourLabel {
+  position: absolute;
+  left: -52px;
+  top: -9px;
+  font-family: var(--cadence-font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--cadence-text-secondary);
+  width: 48px;
+  text-align: right;
+  padding-right: var(--cadence-spacing-02);
+}
+
+.hourLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  // Rendered by border-bottom on hourRow
+}
+
+// =============================================================================
+// BLOCKS CONTAINER
+// =============================================================================
+
+.blocksContainer {
+  position: absolute;
+  top: 0;
+  left: 56px;
+  right: var(--cadence-spacing-03);
+  height: 100%;
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.taskWrapper {
+  position: relative;
+}
+
+.taskMenuWrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+// =============================================================================
+// FOOTER
+// =============================================================================
+
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--cadence-spacing-03) var(--cadence-spacing-04);
+  border-top: 1px solid var(--cadence-border-subtle);
+  background-color: var(--cadence-surface-primary);
+}
+
+.showCompletedToggle {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  cursor: pointer;
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  color: var(--cadence-text-secondary);
+
+  input {
+    display: none;
+  }
+
+  &:hover {
+    color: var(--cadence-text-primary);
+  }
+}
+
+.toggleDot {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--cadence-border-strong);
+  border-radius: 50%;
+  background-color: transparent;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  input:checked + & {
+    background-color: var(--cadence-text-primary);
+    border-color: var(--cadence-text-primary);
+  }
+}
+
+.syncStatus {
+  font-family: var(--cadence-font-sans);
+  font-size: 11px;
+  color: var(--cadence-text-secondary);
+}
+
+// =============================================================================
+// OVERLAY FOR CLOSING MENUS
+// =============================================================================
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: transparent;
+}

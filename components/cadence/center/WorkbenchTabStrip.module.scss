@@ -1,0 +1,130 @@
+// WorkbenchTabStrip - Browser-style tabs for center panel
+
+.workbenchTabStrip {
+  display: flex;
+  align-items: stretch;
+  height: 36px;
+  background-color: var(--cadence-surface-secondary);
+  padding: 0 var(--cadence-spacing-02);
+}
+
+.tabsContainer {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  overflow: hidden;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  height: 100%;
+  padding: 0 var(--cadence-spacing-03);
+  background-color: var(--cadence-surface-secondary);
+  border: none;
+  border-bottom: 1px solid var(--cadence-border-subtle);
+  cursor: pointer;
+  max-width: 180px;
+  min-width: 100px;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover:not(.active) {
+    background-color: #E8E8E8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: -2px;
+  }
+
+  &.active {
+    background-color: var(--cadence-surface-primary);
+    border-bottom-color: transparent;
+    border-top-left-radius: var(--cadence-radius-sm);
+    border-top-right-radius: var(--cadence-radius-sm);
+
+    .tabTitle {
+      color: var(--cadence-text-primary);
+    }
+  }
+}
+
+.favicon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+.tabTitle {
+  flex: 1;
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--cadence-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--cadence-radius-sm);
+  color: var(--cadence-text-secondary);
+  cursor: pointer;
+  opacity: 0;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  .tab:hover &,
+  .tab.active & {
+    opacity: 1;
+  }
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+    color: var(--cadence-text-primary);
+  }
+}
+
+.overflowIndicator {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--cadence-spacing-02);
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--cadence-text-secondary);
+}
+
+.newTabButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 100%;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--cadence-text-secondary);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: #E8E8E8;
+    color: var(--cadence-text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: -2px;
+  }
+}

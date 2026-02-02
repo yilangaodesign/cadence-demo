@@ -1,0 +1,10 @@
+// LeftPanel - Left column container
+
+.leftPanel {
+  width: 320px;
+  height: 100%;
+  padding: var(--cadence-spacing-05) var(--cadence-spacing-05) 0;
+  background-color: var(--cadence-surface-primary);
+  overflow-y: auto;
+  overflow-x: hidden;
+}

@@ -1,0 +1,23 @@
+// MeetingStrip - Today's calendar meetings
+
+.meetingStrip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cadence-spacing-03);
+  overflow-y: auto;
+  margin-bottom: var(--cadence-spacing-05);
+
+  // Subtle scrollbar
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--cadence-border-subtle);
+    border-radius: var(--cadence-radius-full);
+  }
+}

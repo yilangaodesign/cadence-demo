@@ -1,0 +1,43 @@
+// FloatingAgentButton - Quick-access AI reshuffle
+
+.floatingAgentButton {
+  position: absolute;
+  bottom: var(--cadence-spacing-05);
+  right: var(--cadence-spacing-05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: var(--cadence-surface-inverse);
+  border: none;
+  border-radius: 50%;
+  box-shadow: var(--cadence-shadow-md);
+  color: var(--cadence-text-inverse);
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: #393939; // Gray-80
+    box-shadow: var(--cadence-shadow-lg);
+    transform: scale(1.05);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  svg {
+    transition: transform var(--cadence-duration-medium) var(--cadence-easing-standard);
+  }
+
+  &:hover svg {
+    transform: rotate(180deg);
+  }
+}

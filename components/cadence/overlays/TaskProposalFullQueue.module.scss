@@ -1,0 +1,117 @@
+// TaskProposalFullQueue - Expanded task proposals drawer (left panel only)
+
+// No backdrop - user can still interact with center and right panels
+.backdrop {
+  display: none; // Removed - drawer only covers left panel
+}
+
+.taskProposalFullQueue {
+  position: fixed;
+  top: 48px; // Below top chrome
+  left: 0;
+  bottom: 0;
+  width: 320px; // Same as left panel
+  background-color: var(--cadence-surface-primary);
+  border-right: 1px solid var(--cadence-border-subtle);
+  display: flex;
+  flex-direction: column;
+  z-index: 50; // Below other modals but above left panel content
+  animation: slideIn var(--cadence-duration-moderate) var(--cadence-easing-entrance);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--cadence-spacing-04) var(--cadence-spacing-05);
+  border-bottom: 1px solid var(--cadence-border-subtle);
+  flex-shrink: 0;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+}
+
+.collapseButton,
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: var(--cadence-radius-sm);
+  cursor: pointer;
+  color: var(--cadence-text-secondary);
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+  
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+    color: var(--cadence-text-primary);
+  }
+}
+
+.title {
+  font-family: var(--cadence-font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--cadence-text-primary);
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--cadence-spacing-03) var(--cadence-spacing-05);
+  border-bottom: 1px solid var(--cadence-border-subtle);
+  flex-shrink: 0;
+}
+
+.controlsLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+}
+
+.content {
+  flex: 1;
+  padding: var(--cadence-spacing-04);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cadence-spacing-03);
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.emptyMessage {
+  font-family: var(--cadence-font-serif);
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 20px;
+  color: var(--cadence-text-secondary);
+  margin: 0;
+  text-align: center;
+}

@@ -1,0 +1,98 @@
+// PartialCompletionInput - Partial task completion popover
+
+.partialCompletionInput {
+  width: 280px;
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-md);
+  box-shadow: var(--cadence-shadow-md);
+  padding: var(--cadence-spacing-05);
+  z-index: 50;
+}
+
+.header {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  color: var(--cadence-text-primary);
+  margin: 0 0 var(--cadence-spacing-04);
+}
+
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-03);
+  margin-bottom: var(--cadence-spacing-04);
+}
+
+.slider {
+  flex: 1;
+
+  // Override Carbon slider styles
+  :global(.cds--slider__track) {
+    background-color: var(--cadence-surface-secondary);
+  }
+
+  :global(.cds--slider__filled-track) {
+    background-color: var(--cadence-text-primary);
+  }
+
+  :global(.cds--slider__thumb) {
+    background-color: var(--cadence-surface-primary);
+    border-color: var(--cadence-text-primary);
+  }
+}
+
+.percentageValue {
+  font-family: var(--cadence-font-mono);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--cadence-text-primary);
+  min-width: 48px;
+  text-align: right;
+}
+
+.presets {
+  display: flex;
+  gap: var(--cadence-spacing-02);
+  margin-bottom: var(--cadence-spacing-04);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cadence-spacing-02);
+  margin-bottom: var(--cadence-spacing-04);
+  padding: var(--cadence-spacing-03);
+  background-color: var(--cadence-surface-secondary);
+  border-radius: var(--cadence-radius-sm);
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.infoLabel {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--cadence-text-secondary);
+}
+
+.infoValue {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--cadence-text-secondary);
+}
+
+.actions {
+  display: flex;
+  gap: var(--cadence-spacing-03);
+}

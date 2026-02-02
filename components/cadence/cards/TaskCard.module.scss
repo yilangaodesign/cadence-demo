@@ -1,0 +1,187 @@
+// Using CSS custom properties defined in cadence-tokens.scss
+
+.taskCard {
+  width: 100%;
+  padding: var(--cadence-spacing-04);
+  border-radius: var(--cadence-radius-md);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: 2px;
+  }
+}
+
+// =============================================================================
+// STATE VARIANTS
+// =============================================================================
+
+// Queued (default)
+.queued {
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-border-subtle);
+
+  &.hovered {
+    box-shadow: var(--cadence-shadow-sm);
+  }
+}
+
+// Active (current task) - BLACK inverted card
+.active {
+  background-color: var(--cadence-surface-inverse);
+  border: none;
+
+  &.hovered {
+    background-color: #262626; // Gray-90
+  }
+}
+
+// Completed
+.completed {
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-border-subtle);
+
+  .title {
+    color: var(--cadence-text-disabled);
+  }
+}
+
+// Blocked
+.blocked {
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-support-error);
+  border-left: 3px solid var(--cadence-support-error);
+}
+
+// Overrun - black with red border pulse
+.overrun {
+  background-color: var(--cadence-surface-inverse);
+  border: 2px solid var(--cadence-support-error);
+  animation: overrunPulse 2s ease-in-out infinite;
+}
+
+@keyframes overrunPulse {
+  0%, 100% {
+    border-color: var(--cadence-support-error);
+  }
+  50% {
+    border-color: #FFB3B8; // Red-30
+  }
+}
+
+// Partial
+.partial {
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-border-subtle);
+}
+
+// Deferred
+.deferred {
+  background-color: var(--cadence-surface-secondary);
+  border: none;
+
+  .title,
+  .meta {
+    color: var(--cadence-text-secondary);
+  }
+
+  .meta {
+    font-style: italic;
+  }
+}
+
+// =============================================================================
+// CHILD ELEMENTS
+// =============================================================================
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--cadence-spacing-03);
+  margin-bottom: var(--cadence-spacing-02);
+}
+
+.title {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-primary);
+  margin: 0;
+
+  &.inverse {
+    color: var(--cadence-text-inverse);
+  }
+
+  &.strikethrough {
+    text-decoration: line-through;
+  }
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--cadence-spacing-02);
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-secondary);
+  margin-top: var(--cadence-spacing-02);
+
+  &.inverse {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.separator {
+  color: var(--cadence-text-secondary);
+}
+
+.footer {
+  margin-top: var(--cadence-spacing-03);
+}
+
+// =============================================================================
+// PROGRESS BAR
+// =============================================================================
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-03);
+  margin-top: var(--cadence-spacing-03);
+  margin-bottom: var(--cadence-spacing-02);
+}
+
+.progressTrack {
+  flex: 1;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: var(--cadence-radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--cadence-surface-primary);
+  border-radius: var(--cadence-radius-full);
+  transition: width var(--cadence-duration-medium) var(--cadence-easing-standard);
+}
+
+.overrunFill {
+  background-color: var(--cadence-support-error);
+}
+
+.progressLabel {
+  font-family: var(--cadence-font-mono);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  min-width: 36px;
+  text-align: right;
+}

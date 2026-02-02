@@ -1,0 +1,119 @@
+// MyPaceGauge - Semi-circular gauge for schedule trajectory (Terra gradient)
+
+.myPaceGauge {
+  width: 100%;
+  max-width: 300px;
+  padding: var(--cadence-spacing-05);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--cadence-spacing-03);
+}
+
+.title {
+  font-family: var(--cadence-font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--cadence-text-primary);
+  margin: 0;
+}
+
+.infoButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  border-radius: var(--cadence-radius-sm);
+  color: var(--cadence-text-secondary);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+    color: var(--cadence-text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: -2px;
+  }
+}
+
+.gaugeSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.perfectLabel {
+  font-family: var(--cadence-font-serif);
+  font-size: 11px;
+  font-style: italic;
+  font-weight: 400;
+  fill: var(--cadence-text-primary);
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: calc(-1 * var(--cadence-spacing-02));
+  padding: 0 var(--cadence-spacing-02);
+}
+
+.behindLabel,
+.aheadLabel {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.stateIndicator {
+  text-align: center;
+  margin-top: var(--cadence-spacing-04);
+}
+
+.stateText {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+
+  // All states use Terra family for consistency
+  &.ahead {
+    color: #DFC0B3; // terra-30 (lightest)
+  }
+
+  &.on-track {
+    color: #CF9C86; // terra-40
+  }
+
+  &.behind {
+    color: #C27A5A; // terra-50
+  }
+
+  &.critical {
+    color: #A35D3B; // terra-60
+  }
+}
+
+// Pulsing animation for critical state
+.pulsing {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    r: 4;
+  }
+  50% {
+    opacity: 0.7;
+    r: 5;
+  }
+}

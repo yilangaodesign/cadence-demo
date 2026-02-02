@@ -1,0 +1,1329 @@
+@use '@carbon/styles/scss/spacing' as *;
+@use '@carbon/styles/scss/type' as *;
+@use '@carbon/styles/scss/theme' as *;
+
+// Variables
+$sidebar-width: 240px;
+$task-sidebar-width: 300px;
+$toolbar-height: 56px;
+$header-height: 48px;
+$time-gutter-width: 60px;
+
+// Main Layout
+.calendarApp {
+  display: flex;
+  height: 100vh;
+  background: $background;
+  overflow: hidden;
+  
+  &.isDragging {
+    cursor: grabbing !important;
+    user-select: none;
+    
+    * {
+      cursor: grabbing !important;
+    }
+  }
+}
+
+// Left Sidebar
+.leftSidebar {
+  width: $sidebar-width;
+  background: $layer-01;
+  border-right: 1px solid $border-subtle-01;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.appHeader {
+  padding: $spacing-04 $spacing-05;
+  border-bottom: 1px solid $border-subtle-01;
+}
+
+.appLogo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-03;
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+  
+  svg {
+    color: $interactive;
+  }
+}
+
+// Mini Calendar
+.miniCalendar {
+  padding: $spacing-04 $spacing-03;
+  border-bottom: 1px solid $border-subtle-01;
+}
+
+.miniCalendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-03;
+  
+  span {
+    @include type-style('body-compact-01');
+    color: $text-primary;
+    font-weight: 600;
+  }
+  
+  button {
+    background: transparent;
+    border: none;
+    padding: $spacing-02;
+    cursor: pointer;
+    color: $text-secondary;
+    border-radius: 4px;
+    
+    &:hover {
+      background: $layer-hover-01;
+      color: $text-primary;
+    }
+  }
+}
+
+.miniCalendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+
+.miniCalendarDayName {
+  @include type-style('label-01');
+  color: $text-secondary;
+  text-align: center;
+  padding: $spacing-02;
+}
+
+.miniCalendarDay {
+  @include type-style('label-01');
+  background: transparent;
+  border: none;
+  padding: $spacing-02;
+  cursor: pointer;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-primary;
+  transition: all 0.15s ease;
+  
+  &:hover {
+    background: $layer-hover-01;
+  }
+  
+  &.otherMonth {
+    color: $text-disabled;
+  }
+  
+  &.today {
+    background: $interactive;
+    color: $text-on-color;
+    font-weight: 600;
+    
+    &:hover {
+      background: #0043ce;
+    }
+  }
+  
+  &.selected {
+    outline: 2px solid $interactive;
+    outline-offset: -2px;
+  }
+}
+
+// Sidebar Sections
+.sidebarSection {
+  padding: $spacing-04 $spacing-05;
+  border-bottom: 1px solid $border-subtle-01;
+}
+
+.searchWrapper {
+  :global(.cds--search) {
+    background: $background;
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-03;
+  
+  span {
+    @include type-style('label-01');
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  button {
+    background: transparent;
+    border: none;
+    padding: $spacing-01;
+    cursor: pointer;
+    color: $text-secondary;
+    
+    &:hover {
+      color: $text-primary;
+    }
+  }
+}
+
+.calendarItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  padding: $spacing-02 0;
+  cursor: pointer;
+  
+  :global(.cds--checkbox-label) {
+    @include type-style('body-compact-01');
+  }
+}
+
+.calendarColor {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  margin-left: auto;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  padding: $spacing-02 0;
+  
+  :global(.cds--checkbox-label) {
+    @include type-style('body-compact-01');
+  }
+}
+
+.accountItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-03;
+  padding: $spacing-02 0;
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+}
+
+// Main Content
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+// Toolbar
+.toolbar {
+  height: $toolbar-height;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-05;
+  border-bottom: 1px solid $border-subtle-01;
+  background: $background;
+}
+
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: $spacing-04;
+}
+
+.todayBtn {
+  @include type-style('body-compact-01');
+  padding: $spacing-02 $spacing-04;
+  background: transparent;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+  cursor: pointer;
+  color: $text-primary;
+  transition: all 0.15s ease;
+  
+  &:hover {
+    background: $layer-hover-01;
+    border-color: $border-strong-01;
+  }
+}
+
+.navButtons {
+  display: flex;
+  
+  button {
+    background: transparent;
+    border: 1px solid $border-subtle-01;
+    padding: $spacing-02;
+    cursor: pointer;
+    color: $text-primary;
+    transition: all 0.15s ease;
+    
+    &:first-child {
+      border-radius: 4px 0 0 4px;
+      border-right: none;
+    }
+    
+    &:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+    
+    &:hover {
+      background: $layer-hover-01;
+    }
+  }
+}
+
+.currentMonth {
+  @include type-style('heading-03');
+  color: $text-primary;
+  margin: 0;
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: $spacing-04;
+}
+
+.timezoneSelector {
+  display: flex;
+  gap: $spacing-03;
+  @include type-style('label-01');
+  color: $text-secondary;
+  
+  span {
+    padding: $spacing-02;
+    cursor: pointer;
+    
+    &:hover {
+      color: $text-primary;
+    }
+  }
+}
+
+.addBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+  cursor: pointer;
+  color: $text-primary;
+  
+  &:hover {
+    background: $layer-hover-01;
+  }
+}
+
+.viewSelector {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  background: $layer-01;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+  cursor: pointer;
+  
+  &:hover {
+    background: $layer-hover-01;
+  }
+}
+
+.viewSelect {
+  @include type-style('body-compact-01');
+  color: $text-primary;
+  background: transparent;
+  border: none;
+  padding: $spacing-02 $spacing-04 $spacing-02 $spacing-03;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23525252' d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 28px;
+  min-width: 90px;
+  
+  &:focus {
+    outline: 2px solid $interactive;
+    outline-offset: -2px;
+  }
+  
+  option {
+    background: $layer-01;
+    color: $text-primary;
+    padding: $spacing-02;
+  }
+}
+
+.toolbarIcons {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  
+  button {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: $text-secondary;
+    
+    &:hover {
+      background: $layer-hover-01;
+      color: $text-primary;
+    }
+  }
+}
+
+.userAvatar {
+  background: $layer-01 !important;
+  border-radius: 50% !important;
+  overflow: hidden;
+}
+
+// Calendar Wrapper
+.calendarWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0; // Allow flex shrinking for proper scrolling
+}
+
+// Month View Styles
+.monthView {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.monthHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid $border-subtle-01;
+  padding: $spacing-03 0;
+}
+
+.monthDayName {
+  @include type-style('label-01');
+  color: $text-secondary;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.monthGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  border-left: 1px solid $border-subtle-01;
+  overflow: auto;
+}
+
+.monthDay {
+  min-height: 100px;
+  border-right: 1px solid $border-subtle-01;
+  border-bottom: 1px solid $border-subtle-01;
+  padding: $spacing-02;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  
+  &:hover {
+    background: $layer-hover-01;
+  }
+  
+  &.otherMonth {
+    background: $layer-02;
+    
+    .monthDayNumber {
+      color: $text-disabled;
+    }
+  }
+  
+  &.today {
+    .monthDayNumber {
+      background: $interactive;
+      color: $text-on-color;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.monthDayNumber {
+  @include type-style('body-compact-01');
+  color: $text-primary;
+  font-weight: 500;
+  margin-bottom: $spacing-02;
+}
+
+.monthDayEvents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.monthEventDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.monthMoreEvents {
+  @include type-style('helper-text-01');
+  color: $text-secondary;
+  margin-left: $spacing-01;
+}
+
+// Day Headers
+.dayHeaders {
+  display: flex;
+  border-bottom: 1px solid $border-subtle-01;
+  flex-shrink: 0;
+}
+
+.timeGutter {
+  width: $time-gutter-width;
+  flex-shrink: 0;
+}
+
+// Shared wrapper for day columns in headers and all-day row
+.daysWrapper {
+  flex: 1;
+  display: flex;
+  border-left: 1px solid $border-subtle-01;
+  border-right: 1px solid $border-subtle-01;
+}
+
+.dayHeader {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-03 0;
+  border-right: 1px solid $border-subtle-01;
+  
+  // Last day header doesn't need right border (wrapper has it)
+  &:last-child {
+    border-right: none;
+  }
+  
+  &.today {
+    .dayNumber {
+      background: $interactive;
+      color: $text-on-color;
+    }
+  }
+}
+
+.dayName {
+  @include type-style('label-01');
+  color: $text-secondary;
+  text-transform: uppercase;
+}
+
+.dayNumber {
+  @include type-style('heading-compact-02');
+  color: $text-primary;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-top: $spacing-01;
+}
+
+// All Day Row
+.allDayRow {
+  display: flex;
+  border-bottom: 1px solid $border-subtle-01;
+  min-height: 40px;
+  flex-shrink: 0;
+}
+
+.allDayCell {
+  flex: 1;
+  border-right: 1px solid $border-subtle-01;
+  padding: $spacing-02;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-01;
+  
+  // Last cell doesn't need right border (wrapper has it)
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.allDayEvent {
+  @include type-style('label-01');
+  color: $text-on-color;
+  padding: $spacing-01 $spacing-02;
+  border-radius: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  
+  &:hover {
+    filter: brightness(0.9);
+  }
+}
+
+// Time Grid
+.timeGrid {
+  flex: 1;
+  display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.timeColumn {
+  width: $time-gutter-width;
+  flex-shrink: 0;
+}
+
+.timeLabel {
+  height: 60px;
+  @include type-style('label-01');
+  color: $text-secondary;
+  text-align: right;
+  padding-right: $spacing-03;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  transform: translateY(-8px);
+  position: relative;
+}
+
+.daysGrid {
+  flex: 1;
+  display: flex;
+  min-height: min-content; // Ensure it expands to fit all time slots
+  border-left: 1px solid $border-subtle-01;
+  border-right: 1px solid $border-subtle-01;
+}
+
+.dayColumn {
+  flex: 1;
+  position: relative;
+  border-right: 1px solid $border-subtle-01;
+  transition: background-color 0.15s ease;
+  
+  // Last column doesn't need right border (wrapper has it)
+  &:last-child {
+    border-right: none;
+  }
+  
+  &.dropTarget {
+    background: rgba(15, 98, 254, 0.03);
+  }
+}
+
+.timeSlot {
+  height: 60px;
+  border-bottom: 1px solid $border-subtle-01;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+  position: relative;
+  
+  &:hover {
+    background: rgba(15, 98, 254, 0.05);
+  }
+  
+  &.activeSlot {
+    background: rgba(15, 98, 254, 0.1);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: $interactive;
+      animation: snapLineGlow 0.3s ease-out;
+    }
+  }
+}
+
+@keyframes snapLineGlow {
+  from {
+    box-shadow: 0 0 8px 2px rgba(15, 98, 254, 0.5);
+  }
+  to {
+    box-shadow: none;
+  }
+}
+
+// Snap grid lines shown during drag
+.dayColumn.dropTarget .timeSlot {
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(15, 98, 254, 0.2);
+    pointer-events: none;
+  }
+  
+  // 15-minute marks
+  &::after {
+    top: 25%;
+    box-shadow: 
+      0 15px 0 rgba(15, 98, 254, 0.15),
+      0 30px 0 rgba(15, 98, 254, 0.15),
+      0 45px 0 rgba(15, 98, 254, 0.1);
+  }
+}
+
+.eventsContainer {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  right: 4px;
+  bottom: 0;
+  pointer-events: none;
+  
+  > * {
+    pointer-events: auto;
+  }
+}
+
+// Event Block
+.eventBlock {
+  position: absolute;
+  // left and width are set dynamically for overlap handling
+  border-radius: 4px;
+  padding: $spacing-02;
+  overflow: hidden;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s ease;
+  user-select: none;
+  z-index: 1;
+  box-sizing: border-box;
+  
+  // Fixed events - solid background, not draggable
+  &.fixed {
+    cursor: not-allowed; // Show "banned" cursor to indicate it can't be moved
+    color: $text-on-color;
+    
+    &:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+    }
+  }
+  
+  // Draggable events - lighter background with dashed border
+  &.draggable {
+    cursor: grab;
+    border: 2px dashed;
+    background-color: transparent;
+    
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+    }
+    
+    &.dragging {
+      cursor: grabbing;
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      z-index: 100;
+      opacity: 0.9;
+      border-style: solid;
+    }
+  }
+  
+  &.ghost {
+    opacity: 0.4;
+    pointer-events: none;
+    transform: none !important;
+    box-shadow: none !important;
+    filter: grayscale(30%);
+  }
+  
+  // Completed events - strikethrough text
+  &.completed {
+    .eventTitle {
+      text-decoration: line-through;
+    }
+  }
+  
+  // Show edit button on hover
+  &:hover .eventEditButton {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// Edit button that appears on hover
+.eventEditButton {
+  position: absolute;
+  top: $spacing-02;
+  right: $spacing-02;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+  z-index: 2;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  .draggable & {
+    background: rgba(0, 0, 0, 0.08);
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+// Drop Preview
+.dropPreview {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-radius: 4px;
+  border: 2px solid;
+  pointer-events: none;
+  z-index: 50;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: $spacing-02;
+  animation: dropPreviewPulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes dropPreviewPulse {
+  from {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+}
+
+.dropPreviewTime {
+  @include type-style('label-01');
+  color: $text-primary;
+  background: rgba(255, 255, 255, 0.9);
+  padding: $spacing-01 $spacing-02;
+  border-radius: 2px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+// Current Time Indicator
+.currentTimeIndicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  z-index: 60;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.currentTimeDot {
+  position: absolute;
+  left: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #000000;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.currentTimeLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #000000;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.eventContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.eventTitle {
+  @include type-style('label-01');
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  // Color is set inline for draggable blocks, inherit for fixed
+  .fixed & {
+    color: $text-on-color;
+  }
+}
+
+.eventTime {
+  @include type-style('helper-text-01');
+  
+  // Color is set inline for draggable blocks
+  .fixed & {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .draggable & {
+    opacity: 0.8;
+  }
+}
+
+.eventResizeHandle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  cursor: ns-resize;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  
+  .eventBlock.draggable:hover & {
+    opacity: 1;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.15));
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+  }
+  
+  &:hover::after {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+// Completed Toggle
+.completedToggle {
+  padding: $spacing-03 $spacing-05;
+  border-top: 1px solid $border-subtle-01;
+  background: $layer-01;
+}
+
+// Right Sidebar - Tasks
+.rightSidebar {
+  width: $task-sidebar-width;
+  background: $layer-01;
+  border-left: 1px solid $border-subtle-01;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.taskHeader {
+  padding: $spacing-04 $spacing-05;
+  border-bottom: 1px solid $border-subtle-01;
+}
+
+.currentEvent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-01;
+}
+
+.eventLabel {
+  @include type-style('body-compact-01');
+  color: $text-primary;
+  font-weight: 500;
+}
+
+.eventTimeSmall {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+.addTaskBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-02;
+  margin: $spacing-04;
+  padding: $spacing-03;
+  background: $support-success;
+  color: $text-on-color;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  @include type-style('body-compact-01');
+  font-weight: 500;
+  transition: background 0.15s ease;
+  
+  &:hover {
+    background: #198038;
+  }
+}
+
+.overdueWarning {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  margin: 0 $spacing-04 $spacing-04;
+  padding: $spacing-03;
+  background: rgba(218, 30, 40, 0.1);
+  border-radius: 4px;
+  @include type-style('label-01');
+  color: $support-error;
+  
+  svg {
+    flex-shrink: 0;
+  }
+  
+  span {
+    flex: 1;
+  }
+}
+
+.resolveBtn {
+  background: transparent;
+  border: 1px solid $support-error;
+  border-radius: 4px;
+  padding: $spacing-02 $spacing-03;
+  cursor: pointer;
+  color: $support-error;
+  @include type-style('label-01');
+  
+  &:hover {
+    background: rgba(218, 30, 40, 0.1);
+  }
+}
+
+// Task List
+.taskList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 $spacing-04;
+}
+
+.taskGroup {
+  margin-bottom: $spacing-05;
+}
+
+.taskGroupHeader {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-03;
+  margin-bottom: $spacing-03;
+  padding-top: $spacing-03;
+  border-top: 1px solid $border-subtle-01;
+}
+
+.taskDate {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+}
+
+.taskDay {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+// Task Item
+.taskItem {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-03;
+  padding: $spacing-02 0;
+  
+  &.completed {
+    opacity: 0.5;
+    
+    .taskTitle {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.taskCheckbox {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background: transparent;
+  border: 2px solid $border-strong-01;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-on-color;
+  margin-top: 2px;
+  
+  &:hover {
+    border-color: $interactive;
+  }
+  
+  .taskItem.completed & {
+    background: $interactive;
+    border-color: $interactive;
+  }
+}
+
+.unchecked {
+  width: 100%;
+  height: 100%;
+}
+
+.taskInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.taskTitle {
+  @include type-style('body-compact-01');
+  color: $text-primary;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskTime {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+.taskOverdue {
+  @include type-style('label-01');
+  color: $support-error;
+  flex-shrink: 0;
+}
+
+.taskStatus {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $support-success;
+  flex-shrink: 0;
+  margin-top: 6px;
+  
+  &.overdue {
+    background: $support-error;
+  }
+}
+
+.refreshBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-02;
+  margin: $spacing-04;
+  padding: $spacing-03;
+  background: $layer-02;
+  color: $text-secondary;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+  cursor: pointer;
+  @include type-style('body-compact-01');
+  
+  &:hover {
+    background: $layer-hover-01;
+    color: $text-primary;
+  }
+}
+
+// Modal
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: $background;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90vw;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-05;
+  border-bottom: 1px solid $border-subtle-01;
+  
+  h3 {
+    @include type-style('heading-03');
+    color: $text-primary;
+    margin: 0;
+  }
+  
+  button {
+    background: transparent;
+    border: none;
+    padding: $spacing-02;
+    cursor: pointer;
+    color: $text-secondary;
+    border-radius: 4px;
+    
+    &:hover {
+      background: $layer-hover-01;
+      color: $text-primary;
+    }
+  }
+}
+
+.modalBody {
+  padding: $spacing-05;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-02;
+    
+    span {
+      @include type-style('label-01');
+      color: $text-secondary;
+    }
+    
+    input, select {
+      padding: $spacing-03;
+      border: 1px solid $border-subtle-01;
+      border-radius: 4px;
+      background: $layer-01;
+      @include type-style('body-compact-01');
+      color: $text-primary;
+      
+      &:focus {
+        outline: none;
+        border-color: $interactive;
+        box-shadow: 0 0 0 1px $interactive;
+      }
+    }
+  }
+}
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-04 $spacing-05;
+  border-top: 1px solid $border-subtle-01;
+  background: $layer-01;
+}
+
+.deleteBtn {
+  display: flex;
+  align-items: center;
+  gap: $spacing-02;
+  padding: $spacing-03 $spacing-04;
+  background: transparent;
+  border: 1px solid $support-error;
+  border-radius: 4px;
+  cursor: pointer;
+  color: $support-error;
+  @include type-style('body-compact-01');
+  
+  &:hover {
+    background: rgba(218, 30, 40, 0.1);
+  }
+}
+
+.modalActions {
+  display: flex;
+  gap: $spacing-03;
+}
+
+.cancelBtn {
+  padding: $spacing-03 $spacing-05;
+  background: transparent;
+  border: 1px solid $border-subtle-01;
+  border-radius: 4px;
+  cursor: pointer;
+  color: $text-secondary;
+  @include type-style('body-compact-01');
+  
+  &:hover {
+    background: $layer-hover-01;
+    color: $text-primary;
+  }
+}
+
+.saveBtn {
+  padding: $spacing-03 $spacing-05;
+  background: $interactive;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: $text-on-color;
+  @include type-style('body-compact-01');
+  font-weight: 500;
+  
+  &:hover {
+    background: #0043ce;
+  }
+}

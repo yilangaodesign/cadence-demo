@@ -1,0 +1,61 @@
+// InsightsFeed - Paginated AI insight cards feed
+
+.insightsFeed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cadence-spacing-04);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--cadence-font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--cadence-text-primary);
+  margin: 0;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-01);
+}
+
+.pageButton {
+  min-width: 32px;
+  padding: 0;
+}
+
+.pageIndicator {
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--cadence-text-secondary);
+  min-width: 40px;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cadence-spacing-04);
+}
+
+.emptyState {
+  font-family: var(--cadence-font-serif);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--cadence-text-secondary);
+  margin: 0;
+  padding: var(--cadence-spacing-05) 0;
+  text-align: center;
+}

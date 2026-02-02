@@ -1,0 +1,164 @@
+// AgentPanel - Conversational AI interface
+
+.agentPanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chatThread {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--cadence-spacing-04);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cadence-spacing-04);
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--cadence-spacing-05);
+}
+
+.emptyMessage {
+  font-family: var(--cadence-font-serif);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--cadence-text-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+.message {
+  display: flex;
+
+  &.agent {
+    justify-content: flex-start;
+  }
+
+  &.user {
+    justify-content: flex-end;
+  }
+}
+
+.messageBubble {
+  max-width: 85%;
+  padding: var(--cadence-spacing-03) var(--cadence-spacing-04);
+  border-radius: var(--cadence-radius-md);
+
+  .agent & {
+    background-color: #F0F5FD; // Lumen-10
+    border-bottom-left-radius: var(--cadence-radius-sm);
+  }
+
+  .user & {
+    background-color: var(--cadence-surface-inverse);
+    border-bottom-right-radius: var(--cadence-radius-sm);
+  }
+}
+
+.messageContent {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0;
+
+  .agent & {
+    color: var(--cadence-text-primary);
+  }
+
+  .user & {
+    color: var(--cadence-text-inverse);
+  }
+}
+
+// Suggested actions
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cadence-spacing-02);
+  margin-top: var(--cadence-spacing-03);
+}
+
+.actionItem {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  cursor: pointer;
+}
+
+.actionRadio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.actionDot {
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--cadence-lumen-60);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+
+  .actionRadio:checked + & {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      background-color: var(--cadence-lumen-60);
+      border-radius: 50%;
+    }
+  }
+}
+
+.actionLabel {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--cadence-text-primary);
+}
+
+// Action buttons
+.actionButtons {
+  display: flex;
+  gap: var(--cadence-spacing-02);
+  margin-top: var(--cadence-spacing-03);
+}
+
+// Input bar
+.inputBar {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  padding: var(--cadence-spacing-03);
+  border-top: 1px solid var(--cadence-border-subtle);
+  background-color: var(--cadence-surface-primary);
+}
+
+.textInput {
+  flex: 1;
+
+  :global(.cds--text-input) {
+    border-radius: var(--cadence-radius-md);
+  }
+}
+
+.sendButton {
+  color: var(--cadence-lumen-60);
+
+  &:disabled {
+    color: var(--cadence-text-disabled);
+  }
+}

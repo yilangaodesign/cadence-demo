@@ -1,0 +1,156 @@
+---
+description: React & Next.js performance optimization patterns from Vercel Engineering
+globs: "**/*.tsx"
+alwaysApply: false
+---
+
+# React Best Practices (Vercel Engineering)
+
+Comprehensive performance optimization guide for React and Next.js. 45+ rules prioritized by impact.
+
+## CRITICAL: Eliminating Waterfalls
+
+### Defer Await Until Needed
+Move `await` into branches where actually used:
+
+```tsx
+// ❌ Bad: blocks both branches
+async function handleRequest(userId: string, skipProcessing: boolean) {
+  const userData = await fetchUserData(userId)
+  if (skipProcessing) return { skipped: true }
+  return processUserData(userData)
+}
+
+// ✅ Good: only blocks when needed
+async function handleRequest(userId: string, skipProcessing: boolean) {
+  if (skipProcessing) return { skipped: true }
+  const userData = await fetchUserData(userId)
+  return processUserData(userData)
+}
+```
+
+### Promise.all() for Independent Operations
+```tsx
+// ❌ Bad: sequential, 3 round trips
+const user = await fetchUser()
+const posts = await fetchPosts()
+
+// ✅ Good: parallel, 1 round trip
+const [user, posts] = await Promise.all([fetchUser(), fetchPosts()])
+```
+
+### Strategic Suspense Boundaries
+```tsx
+// ✅ Good: wrapper shows immediately
+function Page() {
+  return (
+    <Layout>
+      <Sidebar />
+      <Suspense fallback={<Loading />}>
+        <DataDisplay />
+      </Suspense>
+    </Layout>
+  )
+}
+```
+
+## CRITICAL: Bundle Size
+
+### Avoid Barrel File Imports
+```tsx
+// ❌ Bad: imports entire library
+import { Check, X } from 'lucide-react'
+
+// ✅ Good: direct imports
+import Check from 'lucide-react/dist/esm/icons/check'
+```
+
+### Dynamic Imports for Heavy Components
+```tsx
+// ✅ Good: loads on demand
+const MonacoEditor = dynamic(
+  () => import('./monaco-editor').then(m => m.MonacoEditor),
+  { ssr: false }
+)
+```
+
+## HIGH: Server-Side Performance
+
+### Authenticate Server Actions
+```tsx
+'use server'
+export async function deleteUser(userId: string) {
+  const session = await verifySession()
+  if (!session) throw unauthorized('Must be logged in')
+  // ... perform action
+}
+```
+
+### Minimize Serialization at RSC Boundaries
+```tsx
+// ❌ Bad: serializes all 50 fields
+<Profile user={user} />
+
+// ✅ Good: serializes only what's needed
+<Profile name={user.name} />
+```
+
+## MEDIUM: Re-render Optimization
+
+### Calculate Derived State During Rendering
+```tsx
+// ❌ Bad: redundant state
+const [fullName, setFullName] = useState('')
+useEffect(() => setFullName(first + ' ' + last), [first, last])
+
+// ✅ Good: derive during render
+const fullName = first + ' ' + last
+```
+
+### Use Functional setState Updates
+```tsx
+// ❌ Bad: stale closure risk
+const addItem = useCallback((item) => {
+  setItems([...items, item])
+}, [items])
+
+// ✅ Good: stable, no stale closures
+const addItem = useCallback((item) => {
+  setItems(curr => [...curr, item])
+}, [])
+```
+
+### Use Lazy State Initialization
+```tsx
+// ❌ Bad: runs on every render
+const [data, setData] = useState(expensiveComputation(props))
+
+// ✅ Good: runs only once
+const [data, setData] = useState(() => expensiveComputation(props))
+```
+
+## MEDIUM: Rendering Performance
+
+### CSS content-visibility for Long Lists
+```css
+.list-item {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 80px;
+}
+```
+
+### Use toSorted() Instead of sort()
+```tsx
+// ❌ Bad: mutates array
+const sorted = users.sort((a, b) => a.name.localeCompare(b.name))
+
+// ✅ Good: immutable
+const sorted = users.toSorted((a, b) => a.name.localeCompare(b.name))
+```
+
+## Application to Cadence
+
+1. **Parallel data fetching**: Use Suspense boundaries for independent data sources
+2. **Component variants**: Create explicit variants (UrgentTaskCard, NormalTaskCard) over boolean props
+3. **State management**: Lift state to providers, use functional updates
+4. **Bundle optimization**: Dynamic import heavy components (Impact drawer, Full queue modal)

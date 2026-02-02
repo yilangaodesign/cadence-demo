@@ -1,0 +1,178 @@
+@use "@carbon/styles";
+
+// =============================================================================
+// CADENCE DESIGN SYSTEM TOKENS
+// =============================================================================
+
+:root {
+  // Surface Colors (White-Dominant / Notion-Clean)
+  --cadence-surface-primary: #FFFFFF;
+  --cadence-surface-secondary: #F4F4F4;
+  --cadence-surface-tertiary: #E0E0E0;
+  --cadence-surface-inverse: #161616;
+  --cadence-surface-overlay: rgba(0, 0, 0, 0.5);
+
+  // Text Colors
+  --cadence-text-primary: #161616;
+  --cadence-text-secondary: #525252;
+  --cadence-text-placeholder: #A8A8A8;
+  --cadence-text-disabled: #C6C6C6;
+  --cadence-text-inverse: #FFFFFF;
+  --cadence-text-error: #DA1E28;
+  --cadence-text-link: #0F62FE;
+
+  // Lumen (AI Voice) - NEVER on CTAs/buttons
+  --cadence-lumen-10: #F0F5FD;
+  --cadence-lumen-20: #D5E0FC;
+  --cadence-lumen-30: #B3C5FC;
+  --cadence-lumen-40: #8DA3FC;
+  --cadence-lumen-50: #7182FD;
+  --cadence-lumen-60: #3336FF;
+  --cadence-lumen-70: #0004E2;
+  --cadence-lumen-80: #0003A7;
+  --cadence-lumen-90: #000273;
+  --cadence-lumen-100: #05063E;
+
+  // Terra (Human Origin) - Calendar events only
+  --cadence-terra-10: #F9F3F1;
+  --cadence-terra-20: #EDDED7;
+  --cadence-terra-30: #DFC0B3;
+  --cadence-terra-40: #CF9C86;
+  --cadence-terra-50: #C27A5A;
+  --cadence-terra-60: #A35D3B;
+  --cadence-terra-70: #79442A;
+  --cadence-terra-80: #57311C;
+  --cadence-terra-90: #391F11;
+  --cadence-terra-100: #211209;
+
+  // Semantic Colors
+  --cadence-support-error: #DA1E28;
+  --cadence-support-error-bg: #FFF1F1;
+  --cadence-support-warning: #F1C21B;
+  --cadence-support-warning-bg: #FCF4D6;
+  --cadence-support-success: #198038;
+  --cadence-support-success-bg: #DEFBE6;
+  --cadence-support-info: #0043CE;
+  --cadence-support-info-bg: #E5F6FF;
+
+  // Border Colors
+  --cadence-border-subtle: #E0E0E0;
+  --cadence-border-strong: #8D8D8D;
+  --cadence-border-interactive: #0F62FE;
+  --cadence-border-inverse: #161616;
+
+  // Typography
+  --cadence-font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --cadence-font-serif: 'Lora', 'Georgia', serif;
+  --cadence-font-mono: 'Roboto Mono', 'Menlo', 'Consolas', monospace;
+
+  // Spacing
+  --cadence-spacing-01: 2px;
+  --cadence-spacing-02: 4px;
+  --cadence-spacing-03: 8px;
+  --cadence-spacing-04: 12px;
+  --cadence-spacing-05: 16px;
+  --cadence-spacing-06: 24px;
+  --cadence-spacing-07: 32px;
+  --cadence-spacing-08: 40px;
+  --cadence-spacing-09: 48px;
+
+  // Shadows (Notion-clean: minimal)
+  --cadence-shadow-none: none;
+  --cadence-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --cadence-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --cadence-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --cadence-shadow-overlay: 0 16px 48px rgba(0, 0, 0, 0.16);
+
+  // Border Radius
+  --cadence-radius-none: 0px;
+  --cadence-radius-sm: 4px;
+  --cadence-radius-md: 8px;
+  --cadence-radius-lg: 12px;
+  --cadence-radius-full: 9999px;
+
+  // Motion
+  --cadence-duration-fast: 110ms;
+  --cadence-duration-medium: 240ms;
+  --cadence-duration-slow: 400ms;
+  --cadence-easing-standard: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --cadence-easing-entrance: cubic-bezier(0, 0, 0.38, 0.9);
+  --cadence-easing-exit: cubic-bezier(0.2, 0, 1, 0.9);
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.portfolio-section {
+  padding: 4rem 0;
+}
+
+.portfolio-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+}
+
+.portfolio-container {
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 672px) {
+  .portfolio-container {
+    padding: 0 2rem;
+  }
+}
+
+.section-title {
+  margin-bottom: 2rem;
+}
+
+.project-card {
+  height: 100%;
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+// Tax prototype: Status badge color overrides
+.cds--tag--yellow {
+  background-color: #FEF3C7;
+  color: #92400E;
+}
+
+.cds--tag--green {
+  background-color: #D1FAE5;
+  color: #065F46;
+}
+
+.cds--tag--blue {
+  background-color: #E0E7FF;
+  color: #3730A3;
+}
+
+.cds--tag--red {
+  background-color: #FEE2E2;
+  color: #991B1B;
+}
+
+.cds--tag--gray {
+  background-color: #F3F4F6;
+  color: #374151;
+}

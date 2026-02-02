@@ -1,0 +1,125 @@
+/**
+ * Cadence Design System - CSS Custom Properties
+ * Based on IBM Carbon with custom brand extensions (Lumen, Terra)
+ * Surface Philosophy: White-dominant, Notion-clean. Minimal borders. Spacious.
+ */
+
+:root {
+  // ==========================================================================
+  // SURFACE COLORS (White-Dominant / Notion-Clean)
+  // ==========================================================================
+  --cadence-surface-primary: #FFFFFF;
+  --cadence-surface-secondary: #F4F4F4;
+  --cadence-surface-tertiary: #E0E0E0;
+  --cadence-surface-inverse: #161616;
+  --cadence-surface-overlay: rgba(0, 0, 0, 0.5);
+
+  // ==========================================================================
+  // TEXT COLORS
+  // ==========================================================================
+  --cadence-text-primary: #161616;
+  --cadence-text-secondary: #525252;
+  --cadence-text-placeholder: #A8A8A8;
+  --cadence-text-disabled: #C6C6C6;
+  --cadence-text-inverse: #FFFFFF;
+  --cadence-text-error: #DA1E28;
+  --cadence-text-link: #0F62FE;
+
+  // ==========================================================================
+  // BRAND: LUMEN (AI Voice)
+  // Used for AI signals - NEVER on CTAs/buttons
+  // ==========================================================================
+  --cadence-lumen-10: #F0F5FD;
+  --cadence-lumen-20: #D5E0FC;
+  --cadence-lumen-30: #B3C5FC;
+  --cadence-lumen-40: #8DA3FC;
+  --cadence-lumen-50: #7182FD;
+  --cadence-lumen-60: #3336FF;  // Key brand color
+  --cadence-lumen-70: #0004E2;
+  --cadence-lumen-80: #0003A7;
+  --cadence-lumen-90: #000273;
+  --cadence-lumen-100: #05063E;
+
+  // ==========================================================================
+  // BRAND: TERRA (Human Origin)
+  // ALL calendar events use Terra - encodes "a human put this on your schedule"
+  // ==========================================================================
+  --cadence-terra-10: #F9F3F1;
+  --cadence-terra-20: #EDDED7;
+  --cadence-terra-30: #DFC0B3;
+  --cadence-terra-40: #CF9C86;
+  --cadence-terra-50: #C27A5A;  // Key brand color
+  --cadence-terra-60: #A35D3B;
+  --cadence-terra-70: #79442A;
+  --cadence-terra-80: #57311C;
+  --cadence-terra-90: #391F11;
+  --cadence-terra-100: #211209;
+
+  // ==========================================================================
+  // SEMANTIC COLORS
+  // ==========================================================================
+  --cadence-support-error: #DA1E28;
+  --cadence-support-error-bg: #FFF1F1;
+  --cadence-support-warning: #F1C21B;
+  --cadence-support-warning-bg: #FCF4D6;
+  --cadence-support-success: #198038;
+  --cadence-support-success-bg: #DEFBE6;
+  --cadence-support-info: #0043CE;
+  --cadence-support-info-bg: #E5F6FF;
+
+  // ==========================================================================
+  // BORDER & DIVIDER COLORS
+  // ==========================================================================
+  --cadence-border-subtle: #E0E0E0;
+  --cadence-border-strong: #8D8D8D;
+  --cadence-border-interactive: #0F62FE;
+  --cadence-border-inverse: #161616;
+
+  // ==========================================================================
+  // TYPOGRAPHY
+  // ==========================================================================
+  --cadence-font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --cadence-font-serif: 'Lora', 'Georgia', serif;
+  --cadence-font-mono: 'Roboto Mono', 'Menlo', 'Consolas', monospace;
+
+  // ==========================================================================
+  // SPACING (Carbon-based)
+  // ==========================================================================
+  --cadence-spacing-01: 2px;
+  --cadence-spacing-02: 4px;
+  --cadence-spacing-03: 8px;
+  --cadence-spacing-04: 12px;
+  --cadence-spacing-05: 16px;
+  --cadence-spacing-06: 24px;
+  --cadence-spacing-07: 32px;
+  --cadence-spacing-08: 40px;
+  --cadence-spacing-09: 48px;
+
+  // ==========================================================================
+  // ELEVATION / SHADOWS (Notion-clean: minimal shadows)
+  // ==========================================================================
+  --cadence-shadow-none: none;
+  --cadence-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --cadence-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --cadence-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --cadence-shadow-overlay: 0 16px 48px rgba(0, 0, 0, 0.16);
+
+  // ==========================================================================
+  // BORDER RADIUS
+  // ==========================================================================
+  --cadence-radius-none: 0px;
+  --cadence-radius-sm: 4px;
+  --cadence-radius-md: 8px;
+  --cadence-radius-lg: 12px;
+  --cadence-radius-full: 9999px;
+
+  // ==========================================================================
+  // MOTION
+  // ==========================================================================
+  --cadence-duration-fast: 110ms;
+  --cadence-duration-medium: 240ms;
+  --cadence-duration-slow: 400ms;
+  --cadence-easing-standard: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --cadence-easing-entrance: cubic-bezier(0, 0, 0.38, 0.9);
+  --cadence-easing-exit: cubic-bezier(0.2, 0, 1, 0.9);
+}

@@ -1,0 +1,75 @@
+// UndoButton - Persistent undo control
+
+.undoButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  height: 36px;
+  padding: 0 var(--cadence-spacing-04);
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-sm);
+  box-shadow: var(--cadence-shadow-md);
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-primary);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+    box-shadow: var(--cadence-shadow-lg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  color: var(--cadence-text-primary);
+}
+
+.label {
+  white-space: nowrap;
+}
+
+// Animations
+.animatingIn {
+  animation: slideIn var(--cadence-duration-medium) var(--cadence-easing-entrance) forwards;
+}
+
+.animatingOut {
+  animation: slideOut var(--cadence-duration-medium) var(--cadence-easing-exit) forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}

@@ -1,0 +1,118 @@
+// TaskBlock - Task on calendar timeline (draggable)
+
+.taskBlock {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cadence-spacing-01);
+  padding: var(--cadence-spacing-03);
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-md);
+  cursor: grab;
+  z-index: 1;
+  overflow: hidden;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.taskName {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  color: var(--cadence-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskDuration {
+  color: var(--cadence-text-secondary);
+
+  &.inverted {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+// State variants
+.scheduled {
+  // Base styling above
+}
+
+.hover {
+  border-color: var(--cadence-border-strong);
+  box-shadow: var(--cadence-shadow-sm);
+}
+
+.dragging {
+  border-color: var(--cadence-lumen-60);
+  box-shadow: var(--cadence-shadow-lg);
+  opacity: 0.9;
+  cursor: grabbing;
+}
+
+.active {
+  background-color: var(--cadence-surface-inverse);
+  border-color: transparent;
+  cursor: pointer;
+
+  .taskName {
+    color: var(--cadence-text-inverse);
+  }
+}
+
+.overrun {
+  background-color: var(--cadence-surface-inverse);
+  border: 2px solid var(--cadence-support-error);
+  cursor: pointer;
+  animation: overrunPulse 1.5s ease-in-out infinite;
+
+  .taskName {
+    color: var(--cadence-text-inverse);
+  }
+}
+
+@keyframes overrunPulse {
+  0%, 100% {
+    border-color: var(--cadence-support-error);
+  }
+  50% {
+    border-color: rgba(218, 30, 40, 0.5);
+  }
+}
+
+.conflict {
+  border: 1px dashed var(--cadence-support-error);
+  position: relative;
+}
+
+.conflictBadge {
+  position: absolute;
+  top: var(--cadence-spacing-02);
+  right: var(--cadence-spacing-02);
+  font-family: var(--cadence-font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--cadence-support-error);
+}
+
+.completed {
+  opacity: 0.4;
+  cursor: default;
+
+  .taskName {
+    text-decoration: line-through;
+  }
+
+  &:active {
+    cursor: default;
+  }
+}

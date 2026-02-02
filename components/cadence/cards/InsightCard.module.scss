@@ -1,0 +1,154 @@
+// Using CSS custom properties defined in cadence-tokens.scss
+
+.insightCard {
+  width: 100%;
+  padding: var(--cadence-spacing-04);
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-border-subtle);
+  border-left: 3px solid var(--border-color, var(--cadence-border-subtle));
+  border-radius: var(--cadence-radius-md);
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+  overflow: hidden; // Prevent overflow
+
+  &:hover {
+    box-shadow: var(--cadence-shadow-sm);
+  }
+}
+
+.conflictBg {
+  background-color: var(--cadence-support-error-bg);
+}
+
+.dismissed {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 300ms var(--cadence-easing-exit);
+}
+
+// =============================================================================
+// HEADER
+// =============================================================================
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cadence-spacing-03);
+  margin-bottom: var(--cadence-spacing-04);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-03);
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.dismissButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  border-radius: var(--cadence-radius-sm);
+  color: var(--cadence-text-secondary);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+    color: var(--cadence-text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: -2px;
+  }
+}
+
+// =============================================================================
+// CONFIDENCE PILL
+// =============================================================================
+
+.confidencePill {
+  width: 80px;
+  height: 6px;
+}
+
+.pillTrack {
+  width: 100%;
+  height: 100%;
+  background-color: var(--cadence-surface-secondary);
+  border-radius: var(--cadence-radius-full);
+  overflow: hidden;
+}
+
+.pillFill {
+  height: 100%;
+  border-radius: var(--cadence-radius-full);
+  transition: width var(--cadence-duration-medium) var(--cadence-easing-standard);
+}
+
+// =============================================================================
+// CONTENT
+// =============================================================================
+
+.content {
+  margin-bottom: var(--cadence-spacing-04);
+}
+
+.title {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-primary);
+  margin: 0 0 var(--cadence-spacing-02) 0;
+}
+
+.body {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-secondary);
+  margin: 0;
+}
+
+.expandedContent {
+  padding-top: var(--cadence-spacing-04);
+  border-top: 1px solid var(--cadence-border-subtle);
+  margin-top: var(--cadence-spacing-04);
+}
+
+// =============================================================================
+// ACTIONS
+// =============================================================================
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--cadence-spacing-02);
+  padding-top: var(--cadence-spacing-04);
+  border-top: 1px solid var(--cadence-border-subtle);
+  
+  // Ensure buttons don't overflow
+  > button {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,176 @@
+// Using CSS custom properties defined in cadence-tokens.scss
+
+.meetingCard {
+  display: flex;
+  align-items: stretch;
+  min-height: 48px;
+  background-color: var(--cadence-surface-primary);
+  border-radius: 0 var(--cadence-radius-sm) var(--cadence-radius-sm) 0;
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+  position: relative;
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: 2px;
+  }
+}
+
+// Terra accent border (left side) - defines human origin
+.terraAccent {
+  width: 3px;
+  background-color: var(--cadence-terra-50);
+  border-radius: var(--cadence-radius-sm) 0 0 var(--cadence-radius-sm);
+  flex-shrink: 0;
+}
+
+// =============================================================================
+// STATE VARIANTS
+// =============================================================================
+
+.default {
+  background-color: var(--cadence-surface-primary);
+}
+
+.hover {
+  background-color: var(--cadence-terra-10);
+}
+
+.active {
+  background-color: var(--cadence-terra-10);
+
+  .title {
+    font-weight: 600;
+  }
+}
+
+.conflict {
+  background-color: var(--cadence-support-error-bg);
+
+  .terraAccent {
+    background-color: var(--cadence-support-error);
+  }
+}
+
+.past {
+  opacity: 0.5;
+
+  .terraAccent {
+    background-color: var(--cadence-terra-30);
+  }
+
+  .title {
+    text-decoration: line-through;
+    color: var(--cadence-text-secondary);
+  }
+}
+
+.syncing {
+  .terraAccent {
+    background-color: var(--cadence-terra-30);
+    border-style: dashed;
+  }
+
+  .contentColumn {
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// =============================================================================
+// LAYOUT COLUMNS
+// =============================================================================
+
+.timeColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--cadence-spacing-04);
+  min-width: 64px;
+}
+
+.startTime {
+  color: var(--cadence-text-secondary);
+}
+
+.duration {
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  color: var(--cadence-text-secondary);
+}
+
+.contentColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--cadence-spacing-04) 0;
+  min-width: 0; // Allow text truncation
+}
+
+.title {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subtitle {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actionsColumn {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  padding: var(--cadence-spacing-04);
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: var(--cadence-radius-sm);
+  color: var(--cadence-text-secondary);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+    color: var(--cadence-text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: -2px;
+  }
+}

@@ -1,0 +1,140 @@
+// Using CSS custom properties defined in cadence-tokens.scss
+
+.cadenceButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cadence-spacing-02);
+  border-radius: var(--cadence-radius-sm);
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+  border: none;
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// Size variants
+.sizeSm {
+  height: 32px;
+  padding: 0 var(--cadence-spacing-04);
+}
+
+.sizeMd {
+  height: 40px;
+  padding: 0 var(--cadence-spacing-05);
+}
+
+.sizeLg {
+  height: 48px;
+  padding: 0 var(--cadence-spacing-05);
+  font-size: 16px;
+}
+
+// Primary: Black background, white text
+.primary {
+  background-color: #000000;
+  color: #FFFFFF;
+
+  &:hover:not(:disabled) {
+    background-color: #393939;
+    box-shadow: var(--cadence-shadow-sm);
+  }
+
+  &:active:not(:disabled) {
+    background-color: #161616;
+  }
+}
+
+// Secondary: White background, black border
+.secondary {
+  background-color: #FFFFFF;
+  color: var(--cadence-text-primary);
+  border: 1px solid var(--cadence-text-primary);
+
+  &:hover:not(:disabled) {
+    background-color: var(--cadence-surface-secondary);
+    box-shadow: var(--cadence-shadow-sm);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--cadence-surface-tertiary);
+  }
+}
+
+// Ghost: Transparent, black text
+.ghost {
+  background-color: transparent;
+  color: var(--cadence-text-primary);
+
+  &:hover:not(:disabled) {
+    background-color: var(--cadence-surface-secondary);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--cadence-surface-tertiary);
+  }
+}
+
+// Danger: Red background, white text
+.danger {
+  background-color: var(--cadence-support-error);
+  color: #FFFFFF;
+
+  &:hover:not(:disabled) {
+    background-color: #A2191F; // Red-70
+    box-shadow: var(--cadence-shadow-sm);
+  }
+
+  &:active:not(:disabled) {
+    background-color: #750E13; // Red-80
+  }
+}
+
+// Ghost Danger: Transparent, red text
+.ghostDanger {
+  background-color: transparent;
+  color: var(--cadence-support-error);
+
+  &:hover:not(:disabled) {
+    background-color: var(--cadence-support-error-bg);
+  }
+
+  &:active:not(:disabled) {
+    background-color: #FFD7D9; // Red-20
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.iconLeft,
+.iconRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.label {
+  white-space: nowrap;
+}

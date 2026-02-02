@@ -1,0 +1,266 @@
+/**
+ * Cadence App Styles
+ * 
+ * Main application page styling using Cadence Design System tokens.
+ * Implements the 3-column "IDE for accountants" layout.
+ */
+
+.cadenceApp {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--cadence-surface-primary);
+  overflow: hidden;
+}
+
+// =============================================================================
+// CALENDAR VIEW PLACEHOLDER
+// =============================================================================
+
+.calendarPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  margin: var(--cadence-spacing-md);
+  border: 1px dashed var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-md);
+  
+  p {
+    font-family: var(--cadence-font-serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--cadence-text-secondary);
+  }
+}
+
+// =============================================================================
+// DEMO CONTROLS (Draggable & Minimizable)
+// =============================================================================
+
+.demoControls {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-lg);
+  box-shadow: var(--cadence-shadow-lg);
+  overflow: hidden;
+  transition: width 200ms ease, height 200ms ease;
+  
+  &.minimized {
+    .demoButtonsContainer {
+      display: none;
+    }
+  }
+}
+
+.demoHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background-color: var(--cadence-surface-secondary);
+  border-bottom: 1px solid var(--cadence-border-subtle);
+  cursor: grab;
+  user-select: none;
+  
+  &:active {
+    cursor: grabbing;
+  }
+  
+  h4 {
+    flex: 1;
+    margin: 0;
+    font-family: var(--cadence-font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--cadence-text-secondary);
+  }
+}
+
+.dragHandle {
+  color: var(--cadence-text-secondary);
+  flex-shrink: 0;
+}
+
+.minimizeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  border-radius: var(--cadence-radius-sm);
+  cursor: pointer;
+  color: var(--cadence-text-secondary);
+  transition: all 150ms ease;
+  
+  &:hover {
+    background-color: var(--cadence-surface-tertiary);
+    color: var(--cadence-text-primary);
+  }
+}
+
+.demoButtonsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+
+.demoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.demoSectionLabel {
+  font-family: var(--cadence-font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--cadence-text-secondary);
+}
+
+// Secondary button style (white bg, black border)
+.demoButton {
+  padding: 6px 10px;
+  font-family: var(--cadence-font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cadence-text-primary);
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-text-primary);
+  border-radius: var(--cadence-radius-sm);
+  cursor: pointer;
+  transition: all 150ms ease;
+  text-align: left;
+  
+  &:hover {
+    background-color: var(--cadence-surface-secondary);
+    box-shadow: var(--cadence-shadow-sm);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+    background-color: var(--cadence-surface-tertiary);
+  }
+}
+
+// =============================================================================
+// EDGE CASE INDICATORS (17a-e)
+// =============================================================================
+
+// Calendar Sync Stale (17a)
+.statusIndicator {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-family: var(--cadence-font-body);
+  font-size: 12px;
+  color: var(--cadence-text-secondary);
+  background-color: var(--cadence-surface-secondary);
+  border: 1px solid var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-md);
+}
+
+.warningDot {
+  width: 8px;
+  height: 8px;
+  background-color: #F1C21B; // Yellow-30
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+// AI Unavailable Banner (17b)
+.aiUnavailableBanner {
+  position: fixed;
+  top: 96px; // Below top chrome + potential urgent banner
+  left: 50%;
+  z-index: 100;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  font-family: var(--cadence-font-body);
+  font-size: 14px;
+  color: var(--cadence-text-secondary);
+  background-color: var(--cadence-surface-secondary);
+  border: 1px solid var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-md);
+  box-shadow: var(--cadence-shadow-md);
+}
+
+// Network Offline (17c)
+.offlineIndicator {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-family: var(--cadence-font-body);
+  font-size: 12px;
+  color: #DA1E28; // Red-60
+  background-color: #FFF1F1; // Red-10
+  border: 1px solid #DA1E28;
+  border-radius: var(--cadence-radius-md);
+}
+
+.offlineDot {
+  width: 8px;
+  height: 8px;
+  background-color: #DA1E28;
+  border-radius: 50%;
+}
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@media (max-width: 1280px) {
+  .demoControls {
+    min-width: 160px;
+    
+    h4 {
+      font-size: 10px;
+    }
+  }
+  
+  .demoButton {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .demoControls {
+    display: none; // Hide demo controls on mobile
+  }
+}

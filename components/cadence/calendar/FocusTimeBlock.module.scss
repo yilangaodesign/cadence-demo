@@ -1,0 +1,64 @@
+// FocusTimeBlock - AI-identified empty capacity slot
+
+.focusTimeBlock {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px dashed #B3C5FC; // Lumen-30
+  border-radius: var(--cadence-radius-md);
+  z-index: 0;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: #F0F5FD; // Lumen-10
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--cadence-lumen-60);
+  border-radius: 50%;
+}
+
+.text {
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  color: var(--cadence-lumen-60);
+}
+
+.duration {
+  font-family: var(--cadence-font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--cadence-lumen-60);
+}
+
+.addButton {
+  color: var(--cadence-lumen-60);
+
+  &:hover {
+    color: var(--cadence-lumen-70);
+  }
+}

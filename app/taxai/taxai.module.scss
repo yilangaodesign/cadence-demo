@@ -1,0 +1,622 @@
+@use '@carbon/styles/scss/spacing' as *;
+@use '@carbon/styles/scss/type' as *;
+@use '@carbon/styles/scss/breakpoint' as *;
+@use '@carbon/styles/scss/theme' as *;
+
+// Variables
+$primary-blue: #0f62fe;
+$dark-bg: #161616;
+$light-bg: #f4f4f4;
+
+.landingPage {
+  min-height: 100vh;
+  background-color: $background;
+}
+
+.container {
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 0 $spacing-05;
+
+  @include breakpoint('md') {
+    padding: 0 $spacing-07;
+  }
+}
+
+// Navigation
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid $border-subtle-01;
+}
+
+.navContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-03;
+}
+
+.logoIcon {
+  font-size: 1.5rem;
+  color: $primary-blue;
+}
+
+.logoText {
+  @include type-style('heading-compact-02');
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.navLinks {
+  display: none;
+  gap: $spacing-06;
+
+  @include breakpoint('lg') {
+    display: flex;
+  }
+}
+
+.navLink {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+  text-decoration: none;
+  transition: color 200ms cubic-bezier(0.2, 0, 0.38, 0.9);
+  position: relative;
+  padding-bottom: $spacing-02;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $primary-blue;
+    transition: width 300ms cubic-bezier(0.2, 0, 0.38, 0.9);
+  }
+
+  &:hover {
+    color: $text-primary;
+    
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+.navLinkActive {
+  color: $primary-blue;
+  font-weight: 500;
+
+  &::after {
+    width: 100%;
+  }
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-03;
+}
+
+// Hero Section
+.hero {
+  padding-top: 160px;
+  padding-bottom: $spacing-13;
+  background: linear-gradient(180deg, #f4f4f4 0%, #ffffff 100%);
+}
+
+.heroBadge {
+  margin-bottom: $spacing-04;
+}
+
+.heroTitle {
+  @include type-style('heading-06');
+  color: $text-primary;
+  font-weight: 300;
+  margin-bottom: $spacing-05;
+  max-width: 800px;
+
+  @include breakpoint('lg') {
+    font-size: 3.5rem;
+    line-height: 1.1;
+  }
+}
+
+.heroSubtitle {
+  @include type-style('body-02');
+  color: $text-secondary;
+  max-width: 600px;
+  margin-bottom: $spacing-07;
+  line-height: 1.6;
+}
+
+.heroStats {
+  display: flex;
+  gap: $spacing-09;
+  margin-top: $spacing-08;
+  padding-top: $spacing-07;
+  border-top: 1px solid $border-subtle-01;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.statValue {
+  @include type-style('heading-04');
+  color: $primary-blue;
+  font-weight: 600;
+}
+
+.statLabel {
+  @include type-style('label-01');
+  color: $text-secondary;
+}
+
+// Trust Banner
+.trustBanner {
+  padding: $spacing-06 0;
+  background-color: $layer-01;
+  border-top: 1px solid $border-subtle-01;
+  border-bottom: 1px solid $border-subtle-01;
+}
+
+.trustText {
+  @include type-style('label-01');
+  color: $text-secondary;
+  text-align: center;
+  margin-bottom: $spacing-04;
+}
+
+.trustLogos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-09;
+  flex-wrap: wrap;
+
+  span {
+    @include type-style('body-compact-01');
+    color: $text-secondary;
+    opacity: 0.6;
+  }
+}
+
+// Section Styles
+.sectionHeader {
+  text-align: center;
+  margin-bottom: $spacing-09;
+}
+
+.sectionTitle {
+  @include type-style('heading-05');
+  color: $text-primary;
+  font-weight: 300;
+  margin-top: $spacing-04;
+  margin-bottom: $spacing-04;
+
+  @include breakpoint('lg') {
+    font-size: 2.5rem;
+  }
+}
+
+.sectionSubtitle {
+  @include type-style('body-02');
+  color: $text-secondary;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+// Services Section
+.services {
+  padding: $spacing-13 0;
+  scroll-margin-top: 80px; // Account for fixed nav
+}
+
+.servicesGrid {
+  margin-top: $spacing-07;
+}
+
+.serviceTile {
+  height: 100%;
+  padding: $spacing-06;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.serviceIcon {
+  color: $primary-blue;
+  margin-bottom: $spacing-05;
+}
+
+.serviceTitle {
+  @include type-style('heading-compact-02');
+  color: $text-primary;
+  margin-bottom: $spacing-03;
+}
+
+.serviceDescription {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+  margin-bottom: $spacing-05;
+  line-height: 1.5;
+}
+
+.serviceFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    @include type-style('body-compact-01');
+    color: $text-secondary;
+    display: flex;
+    align-items: center;
+    gap: $spacing-03;
+    margin-bottom: $spacing-02;
+
+    svg {
+      color: #198038; // Green checkmark
+    }
+  }
+}
+
+// How It Works Section
+.howItWorks {
+  padding: $spacing-13 0;
+  background-color: $layer-01;
+  scroll-margin-top: 80px; // Account for fixed nav
+}
+
+.stepsGrid {
+  margin-top: $spacing-07;
+}
+
+.step {
+  padding: $spacing-06;
+  position: relative;
+}
+
+.stepNumber {
+  @include type-style('heading-05');
+  color: $primary-blue;
+  font-weight: 600;
+  margin-bottom: $spacing-04;
+  opacity: 0.3;
+  font-size: 3rem;
+}
+
+.stepTitle {
+  @include type-style('heading-compact-02');
+  color: $text-primary;
+  margin-bottom: $spacing-03;
+}
+
+.stepDescription {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+  line-height: 1.5;
+}
+
+// Features Section (About)
+.features {
+  padding: $spacing-13 0;
+  scroll-margin-top: 80px; // Account for fixed nav
+}
+
+.featureContent {
+  padding-right: $spacing-09;
+}
+
+.featureTitle {
+  @include type-style('heading-05');
+  color: $text-primary;
+  font-weight: 300;
+  margin-top: $spacing-04;
+  margin-bottom: $spacing-04;
+}
+
+.featureSubtitle {
+  @include type-style('body-02');
+  color: $text-secondary;
+  margin-bottom: $spacing-07;
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-06;
+}
+
+.featureItem {
+  display: flex;
+  gap: $spacing-05;
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #edf5ff;
+  border-radius: 8px;
+  color: $primary-blue;
+}
+
+.featureItem h4 {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+  margin-bottom: $spacing-02;
+}
+
+.featureItem p {
+  @include type-style('body-compact-01');
+  color: $text-secondary;
+  line-height: 1.5;
+}
+
+.featureVisual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboardPreview {
+  width: 100%;
+  max-width: 500px;
+  background: $dark-bg;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.previewHeader {
+  display: flex;
+  gap: $spacing-02;
+  padding: $spacing-03 $spacing-04;
+  background: #262626;
+}
+
+.previewDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #525252;
+}
+
+.previewContent {
+  padding: $spacing-06;
+}
+
+.previewMetric {
+  margin-bottom: $spacing-06;
+}
+
+.previewLabel {
+  @include type-style('label-01');
+  color: #8d8d8d;
+  display: block;
+  margin-bottom: $spacing-02;
+}
+
+.previewValue {
+  @include type-style('heading-04');
+  color: #ffffff;
+  display: block;
+  margin-bottom: $spacing-02;
+}
+
+.previewChange {
+  @include type-style('body-compact-01');
+  color: #42be65;
+}
+
+.previewChart {
+  display: flex;
+  align-items: flex-end;
+  gap: $spacing-03;
+  height: 100px;
+}
+
+.chartBar {
+  flex: 1;
+  background: linear-gradient(180deg, $primary-blue 0%, #0043ce 100%);
+  border-radius: 4px 4px 0 0;
+}
+
+// Testimonial Section
+.testimonial {
+  padding: $spacing-13 0;
+  background-color: $dark-bg;
+}
+
+.testimonialContent {
+  text-align: center;
+}
+
+.quote {
+  @include type-style('heading-04');
+  color: #ffffff;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: $spacing-07;
+  font-style: italic;
+}
+
+.quoteAuthor {
+  display: flex;
+  justify-content: center;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.authorName {
+  @include type-style('heading-compact-01');
+  color: #ffffff;
+}
+
+.authorRole {
+  @include type-style('body-compact-01');
+  color: #8d8d8d;
+}
+
+// FAQ Section
+.faq {
+  padding: $spacing-13 0;
+  scroll-margin-top: 80px; // Account for fixed nav
+}
+
+// CTA Section
+.cta {
+  padding: $spacing-13 0;
+  background: linear-gradient(135deg, $primary-blue 0%, #0043ce 100%);
+}
+
+.ctaContent {
+  text-align: center;
+}
+
+.ctaTitle {
+  @include type-style('heading-05');
+  color: #ffffff;
+  font-weight: 300;
+  margin-bottom: $spacing-04;
+}
+
+.ctaSubtitle {
+  @include type-style('body-02');
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 500px;
+  margin: 0 auto $spacing-07;
+}
+
+.ctaButtons {
+  justify-content: center;
+}
+
+// Footer
+.footer {
+  padding: $spacing-10 0 $spacing-07;
+  background-color: $dark-bg;
+}
+
+.footerBrand {
+  margin-bottom: $spacing-06;
+}
+
+.footerBrand .logo {
+  margin-bottom: $spacing-04;
+}
+
+.footerBrand .logoText {
+  color: #ffffff;
+}
+
+.footerTagline {
+  @include type-style('body-compact-01');
+  color: #8d8d8d;
+  max-width: 250px;
+}
+
+.footerLinks {
+  margin-bottom: $spacing-06;
+
+  h4 {
+    @include type-style('heading-compact-01');
+    color: #ffffff;
+    margin-bottom: $spacing-04;
+  }
+
+  a, p {
+    @include type-style('body-compact-01');
+    color: #8d8d8d;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: $spacing-02;
+    margin-bottom: $spacing-03;
+    transition: color 150ms ease;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+
+.footerAddress {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-02;
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: $spacing-06;
+  margin-top: $spacing-07;
+  border-top: 1px solid #393939;
+
+  p {
+    @include type-style('label-01');
+    color: #8d8d8d;
+  }
+}
+
+.footerLegal {
+  display: flex;
+  gap: $spacing-05;
+
+  a {
+    @include type-style('label-01');
+    color: #8d8d8d;
+    text-decoration: none;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+
+// Responsive adjustments
+@include breakpoint-down('md') {
+  .heroStats {
+    flex-direction: column;
+    gap: $spacing-05;
+  }
+
+  .featureContent {
+    padding-right: 0;
+    margin-bottom: $spacing-07;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: $spacing-04;
+    text-align: center;
+  }
+}

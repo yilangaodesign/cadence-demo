@@ -1,0 +1,40 @@
+// Using CSS custom properties defined in cadence-tokens.scss
+
+.deadlineChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  padding: 0 var(--cadence-spacing-03);
+  border-radius: var(--cadence-radius-sm);
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  white-space: nowrap;
+}
+
+// Safe: >7 days to deadline
+.safe {
+  background-color: var(--cadence-surface-secondary);
+  color: var(--cadence-text-secondary);
+}
+
+// Approaching: 3-7 days to deadline
+.approaching {
+  background-color: var(--cadence-support-warning-bg);
+  color: #483700; // Yellow-80
+}
+
+// Urgent: <3 days to deadline
+.urgent {
+  background-color: var(--cadence-support-error-bg);
+  color: var(--cadence-text-error);
+}
+
+// Overdue: Past deadline
+.overdue {
+  background-color: var(--cadence-support-error);
+  color: #FFFFFF;
+}

@@ -1,0 +1,207 @@
+// TaskProposalCard - AI-generated task proposal with Reject/Accept actions
+
+.taskProposalCard {
+  width: 100%;
+  padding: var(--cadence-spacing-04);
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-border-subtle);
+  border-radius: var(--cadence-radius-md);
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    box-shadow: var(--cadence-shadow-sm);
+  }
+}
+
+// State variants
+.default {
+  // Default state - no additional styling
+}
+
+.urgent {
+  background-color: var(--cadence-support-error-bg);
+  border-color: var(--cadence-support-error);
+}
+
+.accepted {
+  border-left: 3px solid #198038; // Green-60
+  animation: acceptedPulse 300ms ease-out;
+}
+
+@keyframes acceptedPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.rejected {
+  // Will animate out
+}
+
+.animatingOut {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 300ms var(--cadence-easing-exit);
+}
+
+// Header row
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--cadence-spacing-02);
+  gap: var(--cadence-spacing-03);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  flex: 1;
+  min-width: 0;
+}
+
+.urgentIcon {
+  flex-shrink: 0;
+  color: var(--cadence-support-error);
+}
+
+.title {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-primary);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.priorityTag {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 var(--cadence-spacing-03);
+  border-radius: var(--cadence-radius-sm);
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+}
+
+// Source row
+.sourceRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--cadence-spacing-02);
+  margin-bottom: var(--cadence-spacing-03);
+}
+
+.sourceLabel {
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  color: var(--cadence-text-secondary);
+}
+
+.sourceValue {
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-secondary);
+}
+
+// Footer
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--cadence-spacing-02);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  flex-shrink: 0;
+}
+
+// Reject button - text style
+.rejectButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 var(--cadence-spacing-03);
+  background: transparent;
+  border: none;
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-primary);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    color: var(--cadence-text-secondary);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: 2px;
+  }
+}
+
+// Accept button - filled black
+.acceptButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 var(--cadence-spacing-04);
+  background-color: var(--cadence-surface-inverse);
+  border: 1px solid var(--cadence-surface-inverse);
+  border-radius: var(--cadence-radius-sm);
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--cadence-text-inverse);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: #393939; // Gray-80
+    border-color: #393939;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: #525252; // Gray-70
+    border-color: #525252;
+  }
+}

@@ -1,0 +1,138 @@
+// ConfidenceBadge - AI confidence level with expandable micro-interaction
+
+.confidenceBadgeContainer {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--cadence-spacing-02);
+}
+
+.confidenceBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  height: 28px;
+  padding: 0 var(--cadence-spacing-03);
+  border-radius: 9999px; // Pill shape
+  font-family: var(--cadence-font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  white-space: nowrap;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+}
+
+.icon {
+  flex-shrink: 0;
+  transition: color var(--cadence-duration-fast) var(--cadence-easing-standard);
+}
+
+.label {
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+}
+
+.arrow {
+  flex-shrink: 0;
+  opacity: 0;
+  width: 0;
+  margin-left: 0;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+}
+
+// Interactive state
+.interactive {
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: 2px;
+  }
+}
+
+// Expanded state (on hover for interactive badges)
+.expanded {
+  .arrow {
+    opacity: 1;
+    width: 16px;
+    margin-left: var(--cadence-spacing-01);
+  }
+}
+
+// Tier variants - original Cadence color palette
+.high {
+  background-color: #EDF5FF; // Blue-10 (Lumen light)
+  color: var(--cadence-lumen-60);
+
+  .icon {
+    color: var(--cadence-lumen-60);
+  }
+
+  .arrow {
+    color: var(--cadence-lumen-60);
+  }
+
+  &.interactive:hover {
+    background-color: #D0E2FF; // Blue-20
+  }
+}
+
+.medium {
+  background-color: #FCF4D6; // Yellow-10
+  color: #8E6A00; // Yellow-60
+
+  .icon {
+    color: #8E6A00;
+  }
+
+  .arrow {
+    color: #8E6A00;
+  }
+
+  &.interactive:hover {
+    background-color: #FDD13A; // Yellow-30
+  }
+}
+
+.low {
+  background-color: #F4F4F4; // Gray-10
+  color: var(--cadence-text-secondary);
+
+  .icon {
+    color: var(--cadence-text-secondary);
+  }
+
+  .arrow {
+    color: var(--cadence-text-secondary);
+  }
+
+  &.interactive:hover {
+    background-color: #E0E0E0; // Gray-30
+  }
+}
+
+// New task type - dashed border variant
+.new {
+  background-color: transparent;
+  border: 1px dashed var(--cadence-border-subtle);
+  color: var(--cadence-text-secondary);
+
+  .icon {
+    color: var(--cadence-text-secondary);
+  }
+
+  &.interactive:hover {
+    background-color: var(--cadence-surface-secondary);
+  }
+}
+
+// Basis text (shown below badge)
+.basisText {
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  color: var(--cadence-text-secondary);
+  margin: 0;
+  padding-left: var(--cadence-spacing-02);
+}

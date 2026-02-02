@@ -1,0 +1,71 @@
+// RightPanel - Right column container with tabbed navigation
+
+.rightPanel {
+  width: 340px;
+  height: 100%;
+  background-color: var(--cadence-surface-primary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tabList {
+  flex-shrink: 0;
+  display: flex;
+  gap: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--cadence-border-subtle);
+  background-color: var(--cadence-surface-primary);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cadence-spacing-02);
+  flex: 1;
+  padding: var(--cadence-spacing-04);
+  font-family: var(--cadence-font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--cadence-text-secondary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  svg {
+    flex-shrink: 0;
+    color: inherit;
+  }
+
+  &:hover {
+    color: var(--cadence-text-primary);
+    background-color: var(--cadence-surface-secondary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: -2px;
+  }
+}
+
+.activeTab {
+  color: var(--cadence-text-primary);
+  font-weight: 500;
+  border-bottom-color: var(--cadence-text-primary);
+}
+
+.tabPanelContainer {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tabPanel {
+  height: 100%;
+  padding: var(--cadence-spacing-05);
+  overflow-y: auto;
+  overflow-x: hidden;
+}

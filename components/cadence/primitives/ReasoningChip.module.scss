@@ -1,0 +1,41 @@
+// Using CSS custom properties defined in cadence-tokens.scss
+
+.reasoningChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cadence-spacing-02);
+  height: 24px;
+  padding: 0 var(--cadence-spacing-03);
+  background-color: var(--cadence-surface-primary);
+  border: 1px solid var(--cadence-lumen-20);
+  border-radius: var(--cadence-radius-sm);
+  font-family: var(--cadence-font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  color: var(--cadence-lumen-60);
+  cursor: pointer;
+  transition: all var(--cadence-duration-fast) var(--cadence-easing-standard);
+
+  &:hover {
+    background-color: var(--cadence-lumen-10);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cadence-border-interactive);
+    outline-offset: 2px;
+  }
+}
+
+.icon {
+  color: var(--cadence-lumen-60);
+  flex-shrink: 0;
+}
+
+.label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
