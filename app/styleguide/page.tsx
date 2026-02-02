@@ -2843,7 +2843,6 @@ export default function StyleGuidePage() {
                         <ConfidenceBadge 
                           tier="high" 
                           basisText="12 similar returns completed in ~2h"
-                          showBasis
                         />
                       </div>
                     </div>
